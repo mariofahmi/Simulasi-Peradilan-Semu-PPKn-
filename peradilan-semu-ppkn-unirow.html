@@ -1,0 +1,4077 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peradilan Semu — Prodi PPKn UNIROW Tuban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN SYSTEM & THEME TOKENS: "PERADILAN SEMU PPKn UNIROW"
+     Nuansa Segar, Gembira & Terang: Biru Laut (Ocean Sea Breeze), Radiant Gold, & Pure White
+     ============================================================ */
+  :root {
+    --bg-dark: #072e4a;
+    --ocean-deep: #052338;
+    --ocean-mid: #0c4a6e;
+    --ocean-light: #0284c7;
+    --ocean-sky: #38bdf8;
+    --ocean-foam: #e0f2fe;
+    
+    --parchment: #ffffff;
+    --parchment-light: #ffffff;
+    --parchment-dark: #eaf5fc;
+    --parchment-card: #f4faff;
+    
+    --gold: #f59e0b;
+    --gold-bright: #fbbf24;
+    --gold-glow: #fef08a;
+    --gold-dim: #b45309;
+    
+    --crimson: #9f1239;
+    --crimson-bright: #e11d48;
+    --crimson-glow: rgba(225, 29, 72, 0.35);
+    
+    --emerald-verdict: #047857;
+    --emerald-bright: #10b981;
+    --emerald-glow: rgba(16, 185, 129, 0.3);
+    
+    --ink-black: #0f172a;
+    --ink-muted: #334155;
+    --ink-subtle: #64748b;
+    
+    --font-serif-court: 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-serif-sub: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --shadow-soft: 0 10px 30px rgba(7, 46, 74, 0.25);
+    --shadow-dramatic: 0 20px 50px rgba(5, 35, 56, 0.35), 0 0 35px rgba(56, 189, 248, 0.2);
+    --gold-gradient: linear-gradient(135deg, #fffbeb 0%, #fef08a 25%, #fbbf24 65%, #d97706 100%);
+    --wood-gradient: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink-black);
+    background-color: #0c4a6e;
+    background-image: 
+      radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.35) 0%, transparent 45%),
+      radial-gradient(circle at 82% 18%, rgba(251, 191, 36, 0.22) 0%, transparent 45%),
+      radial-gradient(circle at 50% 60%, rgba(14, 165, 233, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 0%, #0284c7 0%, #0369a1 40%, #073a5a 80%, #052338 100%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 60px);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Audio Ambient Bar & Top Utility */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    background: rgba(3, 105, 161, 0.88);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(5, 35, 56, 0.35);
+  }
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-family: var(--font-serif-court);
+    font-weight: 800;
+    font-size: 14.5px;
+    letter-spacing: 0.06em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .brand-badge span.icon {
+    font-size: 22px;
+    filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
+  }
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .icon-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 7px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+  .icon-btn:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: #ffffff;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  /* Masthead Header - Nuansa Biru Laut Gembira & Terang */
+  .hero-masthead {
+    text-align: center;
+    padding: 28px 14px 40px;
+    color: #ffffff;
+    position: relative;
+  }
+  .hero-logo-halo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(56,189,248,0.28) 50%, transparent 75%);
+    border-radius: 50%;
+    margin-bottom: 14px;
+    box-shadow: 0 0 45px rgba(56,189,248,0.55);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-logo-halo:hover {
+    transform: scale(1.06) rotate(1deg);
+    box-shadow: 0 0 60px rgba(56,189,248,0.8);
+  }
+  .hero-masthead .unirow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fef08a;
+    background: rgba(5, 35, 56, 0.75);
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    margin-bottom: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+  .hero-masthead h1 {
+    font-family: var(--font-serif-court);
+    font-size: clamp(28px, 5.5vw, 46px);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-shadow: 0 4px 24px rgba(5, 35, 56, 0.8), 0 0 30px rgba(56, 189, 248, 0.5);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .hero-masthead h1 span {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 14px rgba(245,158,11,0.6));
+  }
+  .hero-masthead p.subtitle {
+    color: #f0f9ff;
+    font-size: 15.5px;
+    max-width: 740px;
+    margin: 0 auto 16px;
+    line-height: 1.65;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(5, 35, 56, 0.5);
+  }
+  .designer-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(56, 189, 248, 0.3) 100%);
+    border: 1.5px solid rgba(254, 240, 138, 0.75);
+    border-radius: 30px;
+    padding: 7px 22px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 18px rgba(5, 35, 56, 0.3), 0 0 20px rgba(56, 189, 248, 0.35);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+  }
+  .designer-pill:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: #ffffff;
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.6);
+  }
+  .book-cite {
+    font-size: 12.5px;
+    color: #e0f2fe;
+    font-style: italic;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* Interactive Feature Highlights Bar */
+  .hero-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+  }
+  .highlight-card {
+    background: rgba(7, 43, 71, 0.82);
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 16px rgba(5, 35, 56, 0.35);
+  }
+  .highlight-card:hover {
+    background: rgba(2, 132, 199, 0.9);
+    border-color: #fef08a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(5, 35, 56, 0.5), 0 0 20px rgba(56, 189, 248, 0.4);
+  }
+  .highlight-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  }
+  .highlight-info strong {
+    display: block;
+    font-size: 13.5px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .highlight-info span {
+    font-size: 11.5px;
+    color: #e0f2fe;
+    line-height: 1.3;
+  }
+
+  /* Sheet Panels (Crisp Clean White Parchment Style) */
+  .sheet {
+    background: var(--parchment);
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(240, 249, 255, 0.95) 0%, #ffffff 70%),
+      repeating-linear-gradient(180deg, rgba(2, 132, 199, 0.015) 0px, rgba(2, 132, 199, 0.015) 1px, transparent 1px, transparent 28px);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-dramatic);
+    padding: clamp(22px, 4vw, 42px);
+    position: relative;
+    border: 1.5px solid rgba(56, 189, 248, 0.45);
+    margin-bottom: 30px;
+    animation: fadeIn 0.4s ease-out;
+  }
+  .sheet::before, .sheet::after {
+    content: "⚖️";
+    position: absolute;
+    top: 14px;
+    font-size: 14px;
+    opacity: 0.35;
+  }
+  .sheet::before { left: 16px; }
+  .sheet::after { right: 16px; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Typography within Sheet */
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .sheet-title {
+    font-family: var(--font-serif-sub);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 800;
+    color: var(--wood-deep);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .sheet-desc {
+    color: var(--ink-muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.65;
+  }
+
+  /* History Callout Box */
+  .history-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 5px solid var(--ocean-light);
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: #0c4a6e;
+  }
+  .history-box strong {
+    color: #0369a1;
+  }
+
+  /* Case Selection Cards Grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+  .case-card {
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-top: 5px solid var(--ocean-light);
+    border-radius: var(--radius-sm);
+    padding: 20px 16px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 14px rgba(7, 46, 74, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 12px 28px rgba(7, 46, 74, 0.16);
+    border-color: var(--ocean-sky);
+    border-top-color: var(--gold-bright);
+  }
+  .case-badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .case-card h3 {
+    font-family: var(--font-serif-sub);
+    font-size: 18px;
+    color: var(--wood-deep);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .case-card p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    flex-grow: 1;
+  }
+  .pancasila-tag {
+    font-size: 11px;
+    background: #e8dbc0;
+    color: var(--wood-deep);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  /* Role Selection Screen */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 24px 0;
+  }
+  .role-card {
+    background: var(--parchment-light);
+    border: 2px solid #d4c4a6;
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .role-card:hover {
+    border-color: var(--crimson);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(128,0,32,0.15);
+  }
+  .role-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--wood-deep);
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  .role-card h4 {
+    font-family: var(--font-serif-court);
+    font-size: 18px;
+    color: var(--wood-deep);
+    margin-bottom: 6px;
+  }
+  .role-duty {
+    font-size: 12.5px;
+    color: var(--crimson);
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+  }
+  .role-card p {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* Courtroom Stage Simulator */
+  .court-stage {
+    background: linear-gradient(180deg, #1c140e 0%, #2f1d14 60%, #150c07 100%);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--gold-dim);
+    padding: 20px;
+    color: #fff;
+    margin-bottom: 24px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+  }
+  .court-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212,175,55,0.3);
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+  .court-title-badge {
+    font-family: var(--font-serif-court);
+    font-size: 14px;
+    color: var(--gold-bright);
+    letter-spacing: 0.1em;
+  }
+  .stage-step-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--crimson);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+
+  /* Characters on Court Bench */
+  .court-actors-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    min-height: 130px;
+    margin-bottom: 18px;
+    position: relative;
+    padding: 0 10px;
+  }
+  .actor-podium {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.45;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+  }
+  .actor-podium.active-speaker {
+    opacity: 1;
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 14px rgba(255,215,0,0.6));
+  }
+  .actor-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #3a2518;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  .actor-name {
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: #d8c2a5;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .actor-role {
+    font-size: 10px;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  /* Speech Dialog Box */
+  .dialogue-box {
+    background: rgba(18, 12, 8, 0.92);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    position: relative;
+    min-height: 90px;
+  }
+  .speaker-label {
+    font-family: var(--font-serif-court);
+    font-weight: 700;
+    color: var(--gold-bright);
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dialogue-text {
+    font-size: 15px;
+    color: #f5ede0;
+    line-height: 1.6;
+    font-family: var(--font-sans);
+  }
+
+  /* Flash Alert for Objection */
+  .objection-flash {
+    position: absolute;
+    inset: 0;
+    background: rgba(168, 28, 56, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--font-serif-court);
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-shadow: 0 4px 20px #000;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .objection-flash.active {
+    opacity: 1;
+    animation: objectionShake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  }
+  @keyframes objectionShake {
+    10%, 90% { transform: translate3d(-2px, 0, 0) scale(1.05); }
+    20%, 80% { transform: translate3d(4px, 0, 0) scale(1.08); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0) scale(1.1); }
+    40%, 60% { transform: translate3d(6px, 0, 0) scale(1.1); }
+  }
+
+  /* Pancasila & Civic Spirit Meter */
+  .civic-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #e8dbc0;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    border: 1px solid #d4c2a3;
+  }
+  .civic-label {
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--wood-deep);
+    white-space: nowrap;
+  }
+  .civic-track {
+    flex-grow: 1;
+    height: 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .civic-fill {
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(90deg, #d4af37, #2ecc71);
+    transition: width 0.4s ease;
+  }
+  .civic-score {
+    font-size: 13px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--wood-deep);
+  }
+
+  /* Interactive Action Options */
+  .options-title {
+    font-family: var(--font-serif-court);
+    font-size: 16px;
+    color: var(--wood-deep);
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .choices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .choice-card {
+    background: var(--parchment-light);
+    border: 1.5px solid #cbba9c;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 14.5px;
+    color: var(--ink-black);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-sans);
+  }
+  .choice-card:hover:not(:disabled) {
+    background: #fdfaf3;
+    border-color: var(--crimson);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .choice-card .choice-letter {
+    background: var(--wood-deep);
+    color: var(--gold-bright);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .choice-card.correct {
+    background: #e2edd8;
+    border-color: #2e7d32;
+    color: #1b5e20;
+    font-weight: 600;
+  }
+  .choice-card.incorrect {
+    background: #fbe6e8;
+    border-color: var(--crimson);
+    color: #781020;
+  }
+  .choice-card:disabled {
+    cursor: default;
+  }
+
+  /* Objection Button Banner */
+  .objection-control-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .btn-objection {
+    background: linear-gradient(135deg, #a81c38 0%, #600014 100%);
+    color: #fff;
+    border: 2px solid #ff758c;
+    border-radius: var(--radius-sm);
+    padding: 10px 18px;
+    font-family: var(--font-serif-court);
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(168,28,56,0.35);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-objection:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 18px rgba(168,28,56,0.6);
+  }
+  .btn-objection:active {
+    transform: scale(0.98);
+  }
+
+  /* Educational Feedback Box */
+  .feedback-banner {
+    background: #eee3cb;
+    border-left: 5px solid var(--crimson);
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    animation: fadeIn 0.3s ease;
+    display: none;
+  }
+  .feedback-banner.success {
+    border-left-color: #2e7d32;
+    background: #e4eedc;
+  }
+  .feedback-banner strong {
+    font-family: var(--font-serif-court);
+  }
+
+  /* Standard Action Buttons */
+  .btn {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 14.5px;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--wood-gradient);
+    color: var(--gold-bright);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .btn-primary:hover {
+    background: #3e2417;
+    border-color: #ffd700;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  }
+  .btn-gold {
+    background: var(--gold-gradient);
+    color: #2a1805;
+    font-weight: 800;
+    box-shadow: 0 4px 14px rgba(212,175,55,0.3);
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212,175,55,0.5);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--wood-light);
+    color: var(--wood-deep);
+  }
+  .btn-outline:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* Modal Berkas Perkara & Bukti (Dossier) */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-card {
+    background: var(--parchment-light);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius-md);
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    position: relative;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #d4c2a3;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+  }
+  .modal-title {
+    font-family: var(--font-serif-court);
+    font-size: 20px;
+    color: var(--crimson);
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--ink-muted);
+  }
+  .evidence-item {
+    background: #eee2c9;
+    border: 1px solid #d8c7a8;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+  }
+  .evidence-item strong {
+    color: var(--wood-deep);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Modal Glosarium Istilah */
+  .glossary-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .glossary-input {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #cbba9c;
+    background: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--ink-black);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .glossary-input:focus {
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 3px rgba(168,28,56,0.15);
+  }
+  .alphabet-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 16px;
+  }
+  .alpha-pill {
+    background: #eadeca;
+    border: 1px solid #cbba9c;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--wood-deep);
+    transition: all 0.15s ease;
+  }
+  .alpha-pill:hover, .alpha-pill.active {
+    background: var(--wood-deep);
+    color: var(--gold-bright);
+    border-color: var(--wood-deep);
+  }
+  .glossary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 52vh;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+  .glossary-card {
+    background: #eee3cb;
+    border: 1px solid #dac6a3;
+    border-left: 4px solid var(--crimson);
+    border-radius: var(--radius-sm);
+    padding: 11px 15px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .glossary-term {
+    font-family: var(--font-serif-court);
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--wood-deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .glossary-alpha-badge {
+    background: var(--crimson);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* Quiz & Exam System Tokens */
+  .quiz-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin: 20px 0 28px;
+  }
+  .quiz-mode-card {
+    background: var(--parchment-light);
+    border: 1.5px solid #cbba9c;
+    border-top: 5px solid var(--crimson);
+    border-radius: var(--radius-sm);
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .quiz-mode-card:hover {
+    border-color: var(--gold);
+    border-top-color: var(--gold-bright);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+  }
+  .quiz-mode-card h3 {
+    font-family: var(--font-serif-court);
+    font-size: 16px;
+    color: var(--wood-deep);
+    margin-bottom: 6px;
+  }
+  .quiz-mode-card p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.45;
+  }
+  .quiz-chapter-badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--crimson);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .quiz-progress-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: #eadeca;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--wood-deep);
+    border: 1px solid #d4c2a3;
+  }
+  .quiz-bar-track {
+    flex: 1;
+    height: 10px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .quiz-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d4af37, #2ecc71);
+    transition: width 0.3s ease;
+  }
+  .quiz-question-box {
+    background: #fdfaf3;
+    border: 1.5px solid #cbba9c;
+    border-left: 5px solid var(--crimson);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--wood-deep);
+  }
+  .quiz-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .quiz-opt-btn {
+    background: var(--parchment-light);
+    border: 1.5px solid #cbba9c;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink-black);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+  .quiz-opt-btn:hover:not(:disabled) {
+    background: #ffffff;
+    border-color: var(--crimson);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .quiz-opt-btn .opt-badge {
+    background: var(--wood-deep);
+    color: var(--gold-bright);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .quiz-opt-btn.correct {
+    background: #e2edd8 !important;
+    border-color: #2e7d32 !important;
+    color: #1b5e20 !important;
+    font-weight: 700;
+  }
+  .quiz-opt-btn.incorrect {
+    background: #fbe6e8 !important;
+    border-color: var(--crimson) !important;
+    color: #781020 !important;
+  }
+  .quiz-score-badge-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--wood-deep);
+    border: 3px double var(--gold);
+    color: var(--gold-bright);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+  .quiz-score-num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .quiz-score-lbl {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d1c0a5;
+  }
+
+  /* Bab 6: Rapor Nilai & Evaluasi Resmi */
+  .report-wrap {
+    text-align: center;
+  }
+  .report-seal {
+    font-size: 48px;
+    margin-bottom: 4px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+  }
+  .verdict-stamp {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--emerald-verdict);
+    border: 2.5px double var(--emerald-verdict);
+    padding: 6px 18px;
+    border-radius: 6px;
+    margin: 8px 0 16px;
+    letter-spacing: 0.08em;
+  }
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    text-align: left;
+    font-size: 13.5px;
+    background: var(--parchment-light);
+    border: 1px solid #d4c2a3;
+  }
+  .report-table th, .report-table td {
+    padding: 10px 14px;
+    border: 1px solid #d4c2a3;
+  }
+  .report-table th {
+    background: var(--wood-deep);
+    color: var(--gold-bright);
+    font-family: var(--font-serif-court);
+    font-weight: 600;
+    font-size: 13.5px;
+  }
+  .score-badge {
+    display: inline-block;
+    background: var(--crimson);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .official-notes {
+    background: #e9dbc2;
+    border-left: 4px solid var(--gold-dim);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Footer */
+  footer.app-footer {
+    text-align: center;
+    color: #a4917a;
+    font-size: 12.5px;
+    margin-top: 36px;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     PRINT OPTIMIZATION (ANTI-TERPOTONG & 1 HALAMAN PAS A4)
+     ============================================================ */
+  @page {
+    size: A4 portrait;
+    margin: 6mm 8mm 6mm 8mm;
+  }
+
+  /* Print Header (Kop Surat Resmi) & Tanda Tangan - Hidden on Screen */
+  .print-only-kop {
+    display: none;
+  }
+  .print-signatures {
+    display: none;
+  }
+
+  @media print {
+    *, *::before, *::after {
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+    
+    html, body {
+      background: #ffffff !important;
+      color: #111111 !important;
+      font-size: 8.5pt !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: auto !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .container {
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Hide non-active and interactive elements */
+    .top-bar, 
+    .hero-masthead, 
+    .icon-btn, 
+    .btn, 
+    .btn-row, 
+    .modal-backdrop,
+    #screen-landing, 
+    #screen-case-detail, 
+    #screen-simulation, 
+    #screen-quiz-menu,
+    #screen-quiz-play,
+    #dossier-modal, 
+    #glossary-modal,
+    .civic-bar-wrap, 
+    .quiz-progress-wrap,
+    .quiz-mode-grid,
+    .feedback-banner,
+    .app-footer, 
+    .sheet::before, 
+    .sheet::after,
+    .screen:not(.active) { 
+      display: none !important; 
+    }
+
+    /* Active printable sheet */
+    #screen-report.active,
+    #screen-quiz-result.active {
+      display: block !important;
+      background: #ffffff !important;
+      border: 1.2px solid #333333 !important;
+      border-radius: 4px !important;
+      padding: 8px 12px !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      page-break-after: avoid !important;
+      page-break-before: avoid !important;
+    }
+
+    /* Show Official Kop Surat */
+    .print-only-kop {
+      display: flex !important;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px double #111;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .print-kop-logo-img {
+      height: 46px !important;
+      width: auto !important;
+    }
+    .print-kop-text {
+      flex: 1;
+    }
+    .print-kop-text h2 {
+      font-size: 10.5pt !important;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin: 0;
+      color: #000;
+      text-transform: uppercase;
+      font-family: var(--font-serif-court);
+      line-height: 1.2;
+    }
+    .print-kop-text h3 {
+      font-size: 9pt !important;
+      font-weight: 700;
+      margin: 1px 0 0;
+      color: #222;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .print-kop-text p {
+      font-size: 7.5pt !important;
+      color: #444;
+      margin: 1px 0 0;
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .report-wrap {
+      text-align: center;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    .report-seal {
+      display: none !important;
+    }
+
+    /* Compact Score Badge on Print */
+    .quiz-score-badge-circle {
+      width: auto !important;
+      height: auto !important;
+      border: 1px solid #222 !important;
+      border-radius: 4px !important;
+      background: #faf8f4 !important;
+      color: #000 !important;
+      display: inline-flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding: 2px 10px !important;
+      margin: 0 0 4px 0 !important;
+      box-shadow: none !important;
+    }
+    .quiz-score-num {
+      font-size: 13pt !important;
+      font-weight: 900 !important;
+      color: #000 !important;
+    }
+    .quiz-score-lbl {
+      font-size: 7.5pt !important;
+      color: #444 !important;
+      font-weight: 700 !important;
+    }
+
+    .section-tag {
+      font-size: 7.5pt !important;
+      color: #7a2331 !important;
+      margin-bottom: 2px !important;
+    }
+
+    .sheet-title {
+      font-size: 11.5pt !important;
+      font-weight: 900 !important;
+      margin-bottom: 2px !important;
+      color: #000 !important;
+    }
+
+    .sheet-desc {
+      font-size: 8pt !important;
+      margin-bottom: 4px !important;
+      color: #333 !important;
+    }
+
+    .verdict-stamp {
+      font-size: 9pt !important;
+      padding: 2px 10px !important;
+      margin: 2px 0 5px !important;
+      border: 1.5px solid #1e5e3a !important;
+      background: #f0f7f2 !important;
+      transform: none !important;
+      display: inline-block !important;
+    }
+
+    .report-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 4px 0 5px !important;
+      font-size: 7.8pt !important;
+      background: #ffffff !important;
+      border: 1px solid #444 !important;
+    }
+
+    .report-table th, .report-table td {
+      padding: 2.5px 5px !important;
+      border: 1px solid #555 !important;
+      line-height: 1.2 !important;
+    }
+
+    .report-table th {
+      background: #241711 !important;
+      color: #ffffff !important;
+      font-size: 8pt !important;
+    }
+
+    .score-badge {
+      background: #7a2331 !important;
+      color: #ffffff !important;
+      padding: 1px 4px !important;
+      font-size: 7.5pt !important;
+    }
+
+    .official-notes {
+      background: #faf8f4 !important;
+      border: 1px solid #ddd !important;
+      border-left: 3px solid #886622 !important;
+      padding: 3px 8px !important;
+      margin: 3px 0 5px !important;
+      font-size: 7.5pt !important;
+      line-height: 1.25 !important;
+      text-align: left !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    /* Tanda Tangan Resmi Pengesahan */
+    .print-signatures {
+      display: flex !important;
+      justify-content: space-between;
+      margin-top: 6px !important;
+      padding-top: 2px;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .sig-box {
+      width: 44%;
+      text-align: center;
+      font-size: 7.5pt !important;
+      line-height: 1.2;
+    }
+    .sig-space {
+      height: 26px !important;
+    }
+    .sig-name {
+      font-weight: 700;
+      border-bottom: 1px solid #111;
+      display: inline-block;
+      min-width: 120px;
+      padding-bottom: 1px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND MUSIC AUDIO ELEMENT -->
+<audio id="bgm-audio" src="bgm-motivational.mp3" loop preload="auto"></audio>
+
+<!-- TOP UTILITY BAR -->
+<header class="top-bar">
+  <div class="brand-badge">
+    <img src="logo-unirow.png" alt="Logo UNIROW" style="height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 0 6px rgba(255,215,0,0.35)); vertical-align: middle;">
+    <span>PERADILAN SEMU PRODI PPKN UNIROW TUBAN</span>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" id="btn-ident-toggle" onclick="openIdentityModal()" style="background:rgba(56,189,248,0.2); border-color:var(--ocean-sky);">👤 Identitas</button>
+    <button class="icon-btn" id="btn-music-toggle" onclick="toggleMusic()" style="background:rgba(254,240,138,0.2); border-color:#fef08a;">🎵 Musik: ON</button>
+    <button class="icon-btn" id="btn-sound-toggle" onclick="toggleAudio()">🔊 SFX: ON</button>
+    <button class="icon-btn" onclick="openGlossaryModal()">📖 Glosarium</button>
+    <button class="icon-btn" onclick="showScreen('screen-quiz-menu')">📝 Ujian (50 Soal)</button>
+    <button class="icon-btn" onclick="openDossierModal()">📂 Berkas</button>
+    <button class="icon-btn" onclick="showScreen('screen-landing')">🏛️ Menu</button>
+  </div>
+</header>
+
+<div class="container">
+  <!-- MASTHEAD (VIBRANT & JOYFUL ACADEMIC THEME) -->
+  <div class="hero-masthead">
+    <div class="hero-logo-halo">
+      <img src="logo-unirow.png" alt="Logo UNIROW" style="height: 88px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 14px rgba(0,0,0,0.6));">
+    </div>
+    <div>
+      <div class="unirow-badge">🏛️ FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN &bull; PRODI PPKn UNIROW TUBAN</div>
+    </div>
+    <h1>PERADILAN SEMU <span>PRODI PPKn UNIROW TUBAN</span></h1>
+    <p class="subtitle">✨ Media Pembelajaran Praktik Peradilan Semu Interaktif: Menempa Advokasi Hukum, Nalar Kritis, dan Karakter Kewarganegaraan Demokratis</p>
+    
+    <div>
+      <div class="designer-pill">
+        <span>✍️ Perancang: <strong>Mario Fahmi Syahrial</strong></span>
+      </div>
+    </div>
+
+    <div class="book-cite">Berdasarkan buku rujukan: <em>"Peradilan Semu: Menggali Keterampilan Hukum di Program Studi PPKn"</em> (Mario Fahmi Syahrial, dkk., 2025)</div>
+
+    <!-- 4 Interactive Feature Highlights -->
+    <div class="hero-highlights-grid">
+      <div class="highlight-card" onclick="document.getElementById('screen-landing').scrollIntoView({behavior: 'smooth'})">
+        <div class="highlight-icon">⚖️</div>
+        <div class="highlight-info">
+          <strong>4 Kasus Sidang Nyata</strong>
+          <span>Korupsi, KDRT, UU ITE &amp; Sengketa Agraria</span>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="showScreen('screen-quiz-menu')">
+        <div class="highlight-icon">📝</div>
+        <div class="highlight-info">
+          <strong>50 Bank Soal Ujian</strong>
+          <span>Acak Soal &amp; Poin 2/Soal (Skor 100)</span>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="openGlossaryModal()">
+        <div class="highlight-icon">📖</div>
+        <div class="highlight-info">
+          <strong>48 Glosarium Istilah</strong>
+          <span>Kamus Lengkap Hukum Acara (A - U)</span>
+        </div>
+      </div>
+      <div class="highlight-card" onclick="openDossierModal()">
+        <div class="highlight-icon">📂</div>
+        <div class="highlight-info">
+          <strong>Bukti &amp; Rapor A4</strong>
+          <span>Rapor Bab 6 &amp; Bukti Berkas Perkara</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SCREEN 1: LANDING & KASUS SELECTION
+       ============================================================ -->
+  <section id="screen-landing" class="screen active sheet">
+    <div class="section-tag">Prolog &amp; Sejarah Peradilan Semu</div>
+    <h2 class="sheet-title">Selamat Datang di Ruang Sidang Simulasi</h2>
+    
+    <div class="history-box">
+      <strong>📜 Akar Tradisi Peradilan Semu (Moot Court):</strong><br>
+      Bermula di Inggris pada abad ke-14 di <em>Inns of Court &amp; Inns of Chancery</em>, tempat calon ahli hukum melatih dialektika kasus fiktif. Diadopsi secara akademis oleh <strong>Harvard Law School (1820)</strong> dan kompetisi nasional 1947, metode ini kini diintegrasikan ke dalam <strong>Pendidikan Pancasila dan Kewarganegaraan (PPKn)</strong> bukan semata-mata mencetak praktisi hukum, melainkan membentuk warga negara yang kritis, berintegritas, dan menjunjung tinggi keadilan sosial konstitusional.
+    </div>
+
+    <div style="margin-bottom: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+      <button class="btn btn-gold" onclick="showScreen('screen-quiz-menu')">📝 Ujian &amp; Bank Soal (50 Soal Pilihan Ganda)</button>
+      <button class="btn btn-outline" onclick="openGlossaryModal()">📖 Buka Glosarium Istilah (A - U)</button>
+    </div>
+
+    <p class="sheet-desc">Palu sidang sudah di tangan, dan keadilan menanti ditegakkan. <strong>Silakan pilih salah satu dari 4 Berkas Perkara di bawah ini:</strong></p>
+
+    <div class="cases-grid" id="cases-list-container">
+      <!-- Generated by JS -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 2: DETAIL PERKARA & PILIH PERAN
+       ============================================================ -->
+  <section id="screen-case-detail" class="screen sheet">
+    <div class="section-tag" id="detail-kicker">BERKAS PERKARA NO. 01</div>
+    <h2 class="sheet-title" id="detail-title">Judul Kasus</h2>
+    <div style="margin-bottom: 14px;">
+      <span class="pancasila-tag" id="detail-lawref" style="background:var(--wood-deep); color:var(--gold-bright); font-family:var(--font-mono); font-size:12px; padding:4px 10px;">Dasar Hukum</span>
+    </div>
+    <p class="sheet-desc" id="detail-synopsis">Sinopsis lengkap...</p>
+
+    <div class="section-tag" style="margin-top:24px;">Langkah 2: Tentukan Peran Anda</div>
+    <h3 style="font-family:var(--font-serif-sub); font-size:20px; margin-bottom:12px; color:var(--wood-deep);">Pilih Posisi dalam Tata Ruang Sidang:</h3>
+
+    <div class="roles-grid" id="roles-container">
+      <!-- 3 Roles: Hakim, JPU/Penggugat, Penasihat Hukum/Tergugat -->
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="showScreen('screen-landing')">← Pilih Kasus Lain</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 3: ARENA SIMULASI SIDANG INTERAKTIF
+       ============================================================ -->
+  <section id="screen-simulation" class="screen sheet">
+    <!-- Civic Spirit & Integrity Meter -->
+    <div class="civic-bar-wrap">
+      <span class="civic-label">⚖️ Nilai Karakter PPKn:</span>
+      <div class="civic-track">
+        <div class="civic-fill" id="civic-meter-fill"></div>
+      </div>
+      <span class="civic-score" id="civic-meter-text">Skor: 75/100</span>
+    </div>
+
+    <!-- Visual Courtroom Stage -->
+    <div class="court-stage">
+      <div class="objection-flash" id="objection-banner">KEBERATAN! / OBJECTION!</div>
+      <div class="court-banner">
+        <div class="court-title-badge" id="sim-court-header">SIDANG PERADILAN SEMU &bull; MAJELIS HAKIM</div>
+        <div class="stage-step-pill" id="sim-step-pill">TAHAP 1: PEMBUKAAN</div>
+      </div>
+
+      <!-- Actors Row -->
+      <div class="court-actors-row">
+        <div class="actor-podium" id="actor-hakim">
+          <div class="actor-avatar">👨‍⚖️</div>
+          <div class="actor-name">Ketua Majelis</div>
+          <div class="actor-role">Hakim</div>
+        </div>
+        <div class="actor-podium" id="actor-jpu">
+          <div class="actor-avatar">🧑‍💼</div>
+          <div class="actor-name">Jaksa / JPU</div>
+          <div class="actor-role">Penuntut</div>
+        </div>
+        <div class="actor-podium" id="actor-saksi">
+          <div class="actor-avatar">🧔</div>
+          <div class="actor-name">Saksi / Ahli</div>
+          <div class="actor-role">Keterangan</div>
+        </div>
+        <div class="actor-podium" id="actor-pengacara">
+          <div class="actor-avatar">👩‍💼</div>
+          <div class="actor-name">Advokat</div>
+          <div class="actor-role">Pembela</div>
+        </div>
+        <div class="actor-podium" id="actor-panitera">
+          <div class="actor-avatar">📜</div>
+          <div class="actor-name">Panitera</div>
+          <div class="actor-role">Risalah</div>
+        </div>
+      </div>
+
+      <!-- Live Dialogue Box -->
+      <div class="dialogue-box">
+        <div class="speaker-label" id="sim-speaker-name">Panitera Pengganti</div>
+        <div class="dialogue-text" id="sim-dialogue-text">"Majelis Hakim memasuki ruang sidang, hadirin dimohon berdiri..."</div>
+      </div>
+    </div>
+
+    <!-- Action & Objection Control Area -->
+    <div class="options-title">
+      <span>Tindakan &amp; Argumentasi Anda:</span>
+      <button class="btn-objection" onclick="triggerObjection()">🚨 AJUKAN KEBERATAN!</button>
+    </div>
+
+    <div class="choices-list" id="sim-options-list">
+      <!-- Options rendered here -->
+    </div>
+
+    <!-- Feedback Message Box -->
+    <div class="feedback-banner" id="sim-feedback-banner"></div>
+
+    <!-- Navigation Row -->
+    <div class="btn-row" style="justify-content: space-between;">
+      <button class="btn btn-outline" onclick="confirmExitSim()">🏳️ Mundur dari Sidang</button>
+      <button class="btn btn-gold" id="btn-sim-next" style="display:none;" onclick="advanceSimStep()">Lanjutkan Sidang ➔</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 4: EVALUASI & RAPOR NILAI RESMI (BAB 6)
+       ============================================================ -->
+  <section id="screen-report" class="screen sheet">
+    <!-- Official Kop Surat (Only Visible when Printed) -->
+    <div class="print-only-kop">
+      <img src="logo-unirow.png" alt="Logo UNIROW" class="print-kop-logo-img" style="height: 60px; width: auto; object-fit: contain; margin-right: 8px;">
+      <div class="print-kop-text">
+        <h2>UNIVERSITAS PGRI RONGGOLAWE TUBAN</h2>
+        <h3>FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN &bull; PROGRAM STUDI PPKn</h3>
+        <p>Jl. Manunggal No. 61 Tuban, Jawa Timur &bull; Laboratorium Hukum &amp; Peradilan Semu PPKn</p>
+      </div>
+    </div>
+
+    <div class="report-wrap">
+      <div class="report-seal"><img src="logo-unirow.png" alt="Logo UNIROW" style="height: 56px; width: auto; object-fit: contain;"></div>
+      <div class="section-tag">LEMBAR EVALUASI RESMI (BAB 6 BUKU PERADILAN SEMU)</div>
+      <h2 class="sheet-title" style="margin-bottom:2px;">RAPOR PENILAIAN PERAN &amp; KELULUSAN</h2>
+      <p class="sheet-desc" id="report-case-role-info">Kasus: Korupsi Dana Desa &bull; Peran: Ketua Majelis Hakim</p>
+
+      <div class="verdict-stamp" id="report-verdict-stamp">LULUS DENGAN PREDIKAT: ISTIMEWA (A)</div>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Dimensi Penilaian (Buku Bab 6)</th>
+            <th>Indikator Kompetensi</th>
+            <th>Skor (1-5)</th>
+          </tr>
+        </thead>
+        <tbody id="report-table-body">
+          <!-- Dynamic breakdown -->
+        </tbody>
+      </table>
+
+      <div class="official-notes" id="report-notes">
+        <!-- Evaluator Commentary -->
+      </div>
+
+      <!-- Tanda Tangan Resmi Pengesahan (Visible on Print) -->
+      <div class="print-signatures">
+        <div class="sig-box">
+          <div>Mengetahui,</div>
+          <div><strong>Dosen Penguji / Pembina Mata Kuliah</strong></div>
+          <div class="sig-space"></div>
+          <div class="sig-name">( .................................................... )</div>
+        </div>
+        <div class="sig-box">
+          <div>Tuban, <span id="print-date">29 Agustus 2026</span></div>
+          <div><strong>Mahasiswa Praktikan Sidang</strong></div>
+          <div class="sig-space"></div>
+          <div class="sig-name" id="report-student-name">( .................................................... )</div>
+          <div id="report-student-npm" style="font-size:7.5pt; color:#111; margin-top:2px; font-weight:600;"></div>
+        </div>
+      </div>
+
+      <!-- Screen Buttons (Hidden on Print) -->
+      <div class="btn-row" style="justify-content: center; gap: 14px; margin-top: 20px;">
+        <button class="btn btn-gold" onclick="window.print()">🖨️ Cetak / Simpan PDF Rapor (Pas 1 Halaman)</button>
+        <button class="btn btn-primary" onclick="showScreen('screen-landing')">🏛️ Sidangkan Kasus Lain</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 5: MENU UJIAN & BANK SOAL 50
+       ============================================================ -->
+  <section id="screen-quiz-menu" class="screen sheet">
+    <div class="section-tag">BANK SOAL &bull; 50 BUTIR PILIHAN GANDA</div>
+    <h2 class="sheet-title">Ujian Evaluasi &amp; Penguasaan Materi</h2>
+    <p class="sheet-desc">Uji pemahaman komprehensif Anda mengenai 7 Bab buku <em>"Peradilan Semu: Menggali Keterampilan Hukum di Program Studi PPKn"</em>. Pilih mode ujian yang diinginkan di bawah ini:</p>
+
+    <!-- Mode Cards Grid -->
+    <div class="quiz-mode-grid">
+      <div class="quiz-mode-card" onclick="startQuiz('full')">
+        <div>
+          <div class="quiz-chapter-badge">🏆 MODE UTAMA</div>
+          <h3>Ujian Lengkap (50 Soal Acak)</h3>
+          <p>Mencakup seluruh 7 Bab buku rujukan. Soal dan pilihan jawaban diacak otomatis untuk menguji penguasaan materi secara menyeluruh.</p>
+        </div>
+        <button class="btn btn-gold" style="margin-top:14px; width:100%; justify-content:center;">Mulai Ujian 50 Soal ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('quick10')">
+        <div>
+          <div class="quiz-chapter-badge">⚡ MODE CEPAT</div>
+          <h3>Kuis Kilat (10 Soal Acak)</h3>
+          <p>Latihan kilat 10 soal acak dari berbagai bab untuk menguji kesiapan pemahaman konsep dasar peradilan semu secara efisien.</p>
+        </div>
+        <button class="btn btn-primary" style="margin-top:14px; width:100%; justify-content:center;">Mulai Kuis 10 Soal ➔</button>
+      </div>
+    </div>
+
+    <!-- Chapter Selection Grid -->
+    <div class="section-tag" style="margin-top:20px;">LATIHAN KHUSUS PER BAB (BAB 1 - BAB 7)</div>
+    <div class="quiz-mode-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 1)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 1 (7 Soal)</div>
+          <h3>Pendahuluan &amp; Sejarah</h3>
+          <p>Sejarah moot court, Inns of Court, Harvard, dan integrasi PPKn.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 1 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 2)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 2 (7 Soal)</div>
+          <h3>Hakekat &amp; Tujuan</h3>
+          <p>Miniatur peradilan, role-playing, berpikir kritis, dan karakter.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 2 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 3)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 3 (10 Soal)</div>
+          <h3>Struktur &amp; Tahapan</h3>
+          <p>Tupoksi Hakim, Panitera, JPU, Advokat, Saksi/Ahli, Terdakwa.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 3 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 4)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 4 (7 Soal)</div>
+          <h3>Persiapan &amp; Skrip</h3>
+          <p>Restorative justice, analisis berkas perkara, dan penyusunan skrip.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 4 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 5)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 5 (8 Soal)</div>
+          <h3>Teknik &amp; Retorika</h3>
+          <p>Metode IRAC, CREAC, Ethos/Pathos/Logos, Storytelling, &amp; RPS.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 5 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 6)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 6 (6 Soal)</div>
+          <h3>Evaluasi &amp; Penilaian</h3>
+          <p>Rubrik penilaian peran, dimensi kompetensi, skala 1-5.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 6 ➔</button>
+      </div>
+
+      <div class="quiz-mode-card" onclick="startQuiz('chapter', 7)">
+        <div>
+          <div class="quiz-chapter-badge">BAB 7 (5 Soal)</div>
+          <h3>Studi Kasus &amp; Hukum</h3>
+          <p>UU Tipikor, UU KDRT, UU ITE, UUPA, Replik/Duplik.</p>
+        </div>
+        <button class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; font-size:12.5px;">Latihan Bab 7 ➔</button>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn btn-outline" onclick="showScreen('screen-landing')">← Kembali ke Beranda</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 6: ARENA PENGERJAAN SOAL (QUIZ PLAY)
+       ============================================================ -->
+  <section id="screen-quiz-play" class="screen sheet">
+    <!-- Quiz Progress Bar -->
+    <div class="quiz-progress-wrap">
+      <span id="quiz-progress-text">Soal 1 dari 50</span>
+      <div class="quiz-bar-track">
+        <div class="quiz-bar-fill" id="quiz-progress-fill"></div>
+      </div>
+      <span id="quiz-live-score" style="color:var(--crimson);">Benar: 0 / 0</span>
+    </div>
+
+    <div class="section-tag" id="quiz-current-chapter-tag">BAB 1: PENDAHULUAN</div>
+    
+    <!-- Question Text -->
+    <div class="quiz-question-box" id="quiz-question-text">
+      Pertanyaan soal...
+    </div>
+
+    <!-- 4 Options (Shuffled) -->
+    <div class="quiz-options-list" id="quiz-options-container">
+      <!-- Generated by JS -->
+    </div>
+
+    <!-- Feedback Banner -->
+    <div class="feedback-banner" id="quiz-feedback-box"></div>
+
+    <!-- Controls Row -->
+    <div class="btn-row" style="justify-content: space-between; margin-top:20px;">
+      <button class="btn btn-outline" onclick="confirmExitQuiz()">🏳️ Hentikan Ujian</button>
+      <button class="btn btn-gold" id="btn-quiz-next" style="display:none;" onclick="nextQuizQuestion()">Soal Berikutnya ➔</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN 7: SERTIFIKAT & HASIL EVALUASI UJIAN (QUIZ RESULT)
+       ============================================================ -->
+  <section id="screen-quiz-result" class="screen sheet">
+    <!-- Official Kop Surat (Only Visible on Print) -->
+    <div class="print-only-kop">
+      <img src="logo-unirow.png" alt="Logo UNIROW" class="print-kop-logo-img" style="height: 60px; width: auto; object-fit: contain; margin-right: 8px;">
+      <div class="print-kop-text">
+        <h2>UNIVERSITAS PGRI RONGGOLAWE TUBAN</h2>
+        <h3>FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN &bull; PROGRAM STUDI PPKn</h3>
+        <p>Jl. Manunggal No. 61 Tuban, Jawa Timur &bull; Hasil Ujian Evaluasi Pemahaman Peradilan Semu</p>
+      </div>
+    </div>
+
+    <div class="report-wrap">
+      <div class="quiz-score-badge-circle">
+        <div class="quiz-score-num" id="res-score-num">90</div>
+        <div class="quiz-score-lbl">SKOR AKHIR</div>
+      </div>
+
+      <div class="section-tag">LEMBAR HASIL UJIAN KOMPETENSI TEORI HUKUM PPKn</div>
+      <h2 class="sheet-title" style="margin-bottom:2px;" id="res-mode-title">HASIL EVALUASI UJIAN LENGKAP</h2>
+      <p class="sheet-desc" id="res-summary-stats">Total Soal: 50 &bull; Benar: 45 &bull; Salah: 5 &bull; Akurasi: 90%</p>
+
+      <div class="verdict-stamp" id="res-grade-stamp">PREDIKAT: ISTIMEWA (A)</div>
+
+      <!-- Chapter Analysis Table -->
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Bab Materi (Buku Peradilan Semu)</th>
+            <th>Cakupan Pokok Bahasan</th>
+            <th>Penguasaan</th>
+          </tr>
+        </thead>
+        <tbody id="res-breakdown-body">
+          <!-- Dynamic breakdown per bab -->
+        </tbody>
+      </table>
+
+      <div class="official-notes" id="res-feedback-notes">
+        <!-- Dynamic instructor commentary -->
+      </div>
+
+      <!-- Tanda Tangan Resmi Pengesahan (Print Only) -->
+      <div class="print-signatures">
+        <div class="sig-box">
+          <div>Mengetahui,</div>
+          <div><strong>Dosen Pengampu / Pembina Mata Kuliah</strong></div>
+          <div class="sig-space"></div>
+          <div class="sig-name">( .................................................... )</div>
+        </div>
+        <div class="sig-box">
+          <div>Tuban, <span id="quiz-print-date">29 Agustus 2026</span></div>
+          <div><strong>Mahasiswa Peserta Ujian</strong></div>
+          <div class="sig-space"></div>
+          <div class="sig-name" id="quiz-student-name">( .................................................... )</div>
+          <div id="quiz-student-npm" style="font-size:7.5pt; color:#111; margin-top:2px; font-weight:600;"></div>
+        </div>
+      </div>
+
+      <!-- Screen Buttons -->
+      <div class="btn-row" style="justify-content: center; gap: 14px; margin-top: 20px;">
+        <button class="btn btn-gold" onclick="window.print()">🖨️ Cetak / Simpan PDF Hasil Ujian</button>
+        <button class="btn btn-primary" onclick="showScreen('screen-quiz-menu')">📝 Coba Mode Ujian Lain</button>
+        <button class="btn btn-outline" onclick="showScreen('screen-landing')">🏛️ Kembali ke Ruang Sidang</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    Dikembangkan untuk Praktik Peradilan Semu Mahasiswa Prodi PPKn Universitas PGRI Ronggolawe Tuban.<br>
+    Sesuai Struktur &amp; Instrumen Evaluasi Buku <strong>Peradilan Semu, Mario Fahmi Syahrial, dkk (Pustaka Aksara, 2025)</strong>.
+  </footer>
+</div>
+
+<!-- ============================================================
+     MODAL BERKAS PERKARA & BUKTI INTERAKTIF (DOSSIER)
+     ============================================================ -->
+<div class="modal-backdrop" id="dossier-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">📂 Berkas Bukti &amp; Dokumen Perkara</div>
+      <button class="modal-close" onclick="closeDossierModal()">&times;</button>
+    </div>
+    <div id="dossier-content">
+      <!-- Evidence loaded dynamically -->
+    </div>
+    <div style="text-align: right; margin-top: 18px;">
+      <button class="btn btn-primary" onclick="closeDossierModal()">Tutup Berkas</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL GLOSARIUM & KAMUS ISTILAH HUKUM PPKn
+     ============================================================ -->
+<div class="modal-backdrop" id="glossary-modal">
+  <div class="modal-card" style="max-width: 780px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">📖 Glosarium &amp; Kamus Istilah Peradilan Semu</div>
+        <div style="font-size:12px; color:var(--ink-muted); margin-top:2px;">Buku: <em>Peradilan Semu: Menggali Keterampilan Hukum di Program Studi PPKn</em> (Mario Fahmi Syahrial, dkk., 2025)</div>
+      </div>
+      <button class="modal-close" onclick="closeGlossaryModal()">&times;</button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="glossary-search-bar">
+      <input type="text" id="glossary-search-input" class="glossary-input" placeholder="🔍 Cari istilah hukum, nama peran, atau konsep PPKn..." oninput="onGlossarySearch(this.value)">
+    </div>
+
+    <!-- Alphabet Filter Bar -->
+    <div class="alphabet-filters" id="glossary-alpha-bar">
+      <!-- Alphabet pills generated by JS -->
+    </div>
+
+    <!-- List of Glossary Items -->
+    <div class="glossary-list" id="glossary-items-container">
+      <!-- Generated by JS -->
+    </div>
+
+    <div style="text-align: right; margin-top: 18px;">
+      <button class="btn btn-primary" onclick="closeGlossaryModal()">Tutup Glosarium</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL IDENTITAS MAHASISWA PRAKTIKAN / PESERTA UJIAN
+     ============================================================ -->
+<div class="modal-backdrop" id="identity-modal">
+  <div class="modal-card" style="max-width: 490px; text-align: center;">
+    <div class="modal-header" style="justify-content: center; border-bottom: 2px solid rgba(56,189,248,0.3); padding-bottom: 10px;">
+      <div class="modal-title" style="font-size: 19px; color: #0284c7;">👤 Identitas Mahasiswa Praktikan</div>
+    </div>
+    
+    <p style="font-size: 13.5px; color: var(--ink-muted); margin: 12px 0 18px; line-height: 1.5;">
+      Masukkan <strong>Nama Lengkap</strong> dan <strong>NPM</strong> Anda agar tercantum secara otomatis pada lembar <strong>Rapor Sidang</strong> dan <strong>Sertifikat Ujian</strong> resmi UNIROW.
+    </p>
+
+    <div style="text-align: left; margin-bottom: 14px;">
+      <label style="font-size: 12.5px; font-weight: 700; color: #0f172a; display: block; margin-bottom: 5px;">Nama Lengkap Mahasiswa:</label>
+      <input type="text" id="input-student-name" class="glossary-input" placeholder="Contoh: Mario Fahmi Syahrial" style="width: 100%; box-sizing: border-box;">
+    </div>
+
+    <div style="text-align: left; margin-bottom: 20px;">
+      <label style="font-size: 12.5px; font-weight: 700; color: #0f172a; display: block; margin-bottom: 5px;">Nomor Pokok Mahasiswa (NPM):</label>
+      <input type="text" id="input-student-npm" class="glossary-input" placeholder="Contoh: 2201010045" style="width: 100%; box-sizing: border-box;">
+    </div>
+
+    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+      <button class="btn btn-outline" onclick="closeIdentityModal()">Lewati / Nanti Saja</button>
+      <button class="btn btn-gold" onclick="saveStudentIdentityAndProceed()">Simpan &amp; Lanjutkan ➔</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT GAME ENGINE & DATA
+     ============================================================ -->
+<script>
+/* ============================================================
+   BACKGROUND MUSIC & SOUND SYNTHESIZER
+   ============================================================ */
+let audioCtx = null;
+let soundEnabled = true;
+let bgmAudio = null;
+let isMusicPlaying = false;
+let userMusicPref = true;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+}
+
+function initBGM() {
+  if (!bgmAudio) {
+    bgmAudio = document.getElementById('bgm-audio');
+    if (bgmAudio) {
+      bgmAudio.volume = 0.35; // Volume seimbang & memotivasi
+    }
+  }
+}
+
+function toggleMusic() {
+  initBGM();
+  if (!bgmAudio) return;
+  const btn = document.getElementById('btn-music-toggle');
+  
+  if (isMusicPlaying) {
+    userMusicPref = false;
+    bgmAudio.pause();
+    isMusicPlaying = false;
+    if (btn) {
+      btn.textContent = '🔇 Musik: OFF';
+      btn.style.background = 'rgba(255,255,255,0.15)';
+      btn.style.borderColor = 'rgba(255,255,255,0.35)';
+    }
+  } else {
+    userMusicPref = true;
+    bgmAudio.play().then(() => {
+      isMusicPlaying = true;
+      if (btn) {
+        btn.textContent = '🎵 Musik: ON';
+        btn.style.background = 'rgba(254,240,138,0.25)';
+        btn.style.borderColor = '#fef08a';
+      }
+    }).catch(err => {
+      console.log("Menunggu interaksi pengguna:", err);
+    });
+  }
+}
+
+// Jeda musik otomatis saat masuk ke mode fokus pengerjaan soal/sidang
+function pauseBGMForWork() {
+  if (bgmAudio && isMusicPlaying) {
+    bgmAudio.pause();
+    isMusicPlaying = false;
+    const btn = document.getElementById('btn-music-toggle');
+    if (btn) {
+      btn.textContent = '🔇 Musik: Jeda (Fokus)';
+      btn.style.background = 'rgba(255,255,255,0.15)';
+      btn.style.borderColor = 'rgba(255,255,255,0.35)';
+    }
+  }
+}
+
+// Hidupkan kembali musik di dashboard jika sebelumnya diizinkan oleh pengguna
+function resumeBGMIfAllowed() {
+  if (userMusicPref && bgmAudio && !isMusicPlaying) {
+    bgmAudio.play().then(() => {
+      isMusicPlaying = true;
+      const btn = document.getElementById('btn-music-toggle');
+      if (btn) {
+        btn.textContent = '🎵 Musik: ON';
+        btn.style.background = 'rgba(254,240,138,0.25)';
+        btn.style.borderColor = '#fef08a';
+      }
+    }).catch(() => {});
+  }
+}
+
+// Mulai musik secara otomatis begitu pengguna berinteraksi pertama kali (klik/sentuh) di menu
+function attemptAutoStartBGM() {
+  initBGM();
+  const currentScreen = document.querySelector('.screen.active');
+  const isWorkScreen = currentScreen && (currentScreen.id === 'screen-simulation' || currentScreen.id === 'screen-quiz-play');
+  
+  if (bgmAudio && !isMusicPlaying && userMusicPref && !isWorkScreen) {
+    bgmAudio.play().then(() => {
+      isMusicPlaying = true;
+      const btn = document.getElementById('btn-music-toggle');
+      if (btn) {
+        btn.textContent = '🎵 Musik: ON';
+        btn.style.background = 'rgba(254,240,138,0.25)';
+        btn.style.borderColor = '#fef08a';
+      }
+    }).catch(() => {
+      // Menunggu klik eksplisit
+    });
+  }
+}
+document.addEventListener('click', attemptAutoStartBGM, { once: true });
+
+function toggleAudio() {
+  soundEnabled = !soundEnabled;
+  const btn = document.getElementById('btn-sound-toggle');
+  btn.textContent = soundEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
+}
+
+/* ============================================================
+   STUDENT IDENTITY SYSTEM (Nama & NPM Otomatis)
+   ============================================================ */
+let studentData = {
+  name: sessionStorage.getItem('unirow_student_name') || '',
+  npm: sessionStorage.getItem('unirow_student_npm') || ''
+};
+let pendingActionCallback = null;
+
+function openIdentityModal(callback = null) {
+  pendingActionCallback = callback;
+  const nameInput = document.getElementById('input-student-name');
+  const npmInput = document.getElementById('input-student-npm');
+  if (nameInput) nameInput.value = studentData.name || '';
+  if (npmInput) npmInput.value = studentData.npm || '';
+  document.getElementById('identity-modal').classList.add('active');
+}
+
+function closeIdentityModal() {
+  document.getElementById('identity-modal').classList.remove('active');
+  if (typeof pendingActionCallback === 'function') {
+    const cb = pendingActionCallback;
+    pendingActionCallback = null;
+    cb();
+  }
+}
+
+function saveStudentIdentityAndProceed() {
+  const nameVal = document.getElementById('input-student-name').value.trim();
+  const npmVal = document.getElementById('input-student-npm').value.trim();
+  
+  studentData.name = nameVal;
+  studentData.npm = npmVal;
+  
+  if (nameVal) sessionStorage.setItem('unirow_student_name', nameVal);
+  if (npmVal) sessionStorage.setItem('unirow_student_npm', npmVal);
+  
+  updateAllSignatures();
+  document.getElementById('identity-modal').classList.remove('active');
+  
+  if (typeof pendingActionCallback === 'function') {
+    const cb = pendingActionCallback;
+    pendingActionCallback = null;
+    cb();
+  }
+}
+
+function updateAllSignatures() {
+  const displayName = studentData.name ? `( ${studentData.name} )` : `( .................................................... )`;
+  const displayNPM = studentData.npm ? `NPM. ${studentData.npm}` : ``;
+  
+  const rName = document.getElementById('report-student-name');
+  const rNpm = document.getElementById('report-student-npm');
+  if (rName) rName.textContent = displayName;
+  if (rNpm) rNpm.textContent = displayNPM;
+
+  const qName = document.getElementById('quiz-student-name');
+  const qNpm = document.getElementById('quiz-student-npm');
+  if (qName) qName.textContent = displayName;
+  if (qNpm) qNpm.textContent = displayNPM;
+
+  const btnIdent = document.getElementById('btn-ident-toggle');
+  if (btnIdent) {
+    if (studentData.name) {
+      btnIdent.textContent = `👤 ${studentData.name.split(' ')[0]}`;
+      btnIdent.style.borderColor = 'var(--gold-bright)';
+    } else {
+      btnIdent.textContent = `👤 Identitas`;
+    }
+  }
+}
+
+function playGavelStrike(count = 1) {
+  if (!soundEnabled) return;
+  initAudio();
+  
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const now = audioCtx.currentTime;
+      // High wooden impact
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(30, now + 0.12);
+      
+      gain.gain.setValueAtTime(0.8, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start(now);
+      osc.stop(now + 0.15);
+
+      // Wood resonance thud
+      const osc2 = audioCtx.createOscillator();
+      const gain2 = audioCtx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(80, now);
+      osc2.frequency.exponentialRampToValueAtTime(20, now + 0.25);
+      
+      gain2.gain.setValueAtTime(0.9, now);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+      
+      osc2.connect(gain2);
+      gain2.connect(audioCtx.destination);
+      
+      osc2.start(now);
+      osc2.stop(now + 0.3);
+    }, i * 220);
+  }
+}
+
+function playObjectionSound() {
+  if (!soundEnabled) return;
+  initAudio();
+  const now = audioCtx.currentTime;
+  
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(280, now);
+  osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+  
+  gain.gain.setValueAtTime(0.7, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+  
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  
+  osc.start(now);
+  osc.stop(now + 0.36);
+}
+
+function playSuccessChime() {
+  if (!soundEnabled) return;
+  initAudio();
+  const now = audioCtx.currentTime;
+  [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, now + i * 0.08);
+    gain.gain.setValueAtTime(0.3, now + i * 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.4);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now + i * 0.08);
+    osc.stop(now + i * 0.08 + 0.45);
+  });
+}
+
+function playWarningBuzz() {
+  if (!soundEnabled) return;
+  initAudio();
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'square';
+  osc.frequency.setValueAtTime(130, now);
+  osc.frequency.setValueAtTime(110, now + 0.1);
+  gain.gain.setValueAtTime(0.3, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start(now);
+  osc.stop(now + 0.3);
+}
+
+/* ============================================================
+   KNOWLEDGE BASE & CASE DATA (DARI BUKU E-BOOK)
+   ============================================================ */
+const DATABASE_CASES = {
+  korupsi: {
+    id: "korupsi",
+    number: "01/Pid.Sus-TPK/2025/PN.Semu",
+    kicker: "Berkas Perkara No. 01 — Tindak Pidana Khusus",
+    title: "Korupsi Dana Desa & Proyek Fiktif",
+    lawRef: "Pasal 12B & Pasal 3 UU No. 31/1999 jo. UU No. 20/2001 (Tipikor)",
+    pancasilaFocus: "Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia",
+    synopsis: "Seorang Kepala Desa didakwa bersekongkol dengan kontraktor swasta mencairkan anggaran pembangunan jembatan tani fiktif senilai Rp450 juta dan menerima gratifikasi berupa kendaraan mewah. Kasus ini menguji akuntabilitas aparatur negara, transparansi anggaran, serta kerugian langsung bagi hak ekonomi masyarakat desa.",
+    evidenceList: [
+      { title: "Bukti Rekening Koran & Aliran Dana", desc: "Transfer mencurigakan sebesar Rp150.000.000 dari rekening kontraktor PT Maju Mandiri ke rekening pribadi terdakwa." },
+      { title: "Laporan Audit Investigatif BPKP", desc: "Ditemukan selisih fisik proyek jembatan desa 0% (fiktif) dengan kerugian keuangan negara Rp450.000.000." },
+      { title: "Keterangan Saksi Penyelidik & Saksi Penyuap", desc: "Penyuap mengakui penyerahan uang dilakukan atas permintaan percepatan pencairan termin 100%." }
+    ],
+    roles: {
+      hakim: {
+        label: "Ketua Majelis Hakim",
+        icon: "👨‍⚖️",
+        duty: "Memimpin Sidang & Menjatuhkan Vonis Berkeadilan",
+        desc: "Menjaga martabat persidangan, menguji objektivitas alat bukti, dan merumuskan vonis yang menjunjung keadilan sosial.",
+        steps: [
+          {
+            stage: "Pembukaan & Tata Tertib Sidang",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Sidang perkara tindak pidana korupsi Nomor 01/Pid.Sus-TPK/2025 dibuka dan dinyatakan terbuka untuk umum. (Ketuk Palu 3x). Saudara Terdakwa, apakah dalam keadaan sehat dan siap didampingi Penasihat Hukum?",
+            options: [
+              { text: "Memeriksa identitas terdakwa secara teliti, memastikan hak didampingi advokat terpenuhi sesuai KUHAP dan asas praduga tak bersalah.", score: 25, feedback: "Sangat Tepat! Memenuhi Pasal 155 KUHAP dan menjunjung tinggi hak asasi konstitusional terdakwa.", correct: true },
+              { text: "Langsung memerintahkan jaksa membacakan tuntutan penjara maksimal agar sidang cepat selesai.", score: 5, feedback: "Melanggar hukum acara! Hakim tidak boleh berpihak dan harus melalui tahapan pemeriksaan identitas & dakwaan terlebih dahulu.", correct: false },
+              { text: "Menanyakan apakah terdakwa bersedia membayar suap agar dibebaskan dari perkara.", score: 0, feedback: "Pelanggaran Etika Berat! Kode Etik Hakim melarang keras perbuatan tercela dan kompromi transaksional.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi & Pembuktian",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Jaksa menghadirkan Ahli Audit BPKP dan Bukti Rekening. Penasihat Hukum menyatakan bukti rekening diperoleh tanpa izin sah.",
+            options: [
+              { text: "Memeriksa penetapan izin penyitaan dari pengadilan negeri setempat untuk menguji keabsahan bukti secara due process of law.", score: 25, feedback: "Tepat Sekali! Majelis hakim wajib menguji legalitas alat bukti sebelum menerimanya dalam persidangan.", correct: true },
+              { text: "Mengabaikan keberatan penasihat hukum dan menuduh mereka hanya menghambat persidangan.", score: 10, feedback: "Kurang Objektif. Hakim harus mendengarkan dan mempertimbangkan eksepsi/keberatan secara berimbang.", correct: false },
+              { text: "Membatalkan seluruh audit investigasi tanpa dasar hukum yang jelas.", score: 5, feedback: "Keliru. Dokumen resmi lembaga audit negara berkedudukan kuat sebagai alat bukti surat yang sah.", correct: false }
+            ]
+          },
+          {
+            stage: "Musyawarah & Putusan Akhir (Vonis)",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Berdasarkan seluruh fakta persidangan, terdakwa terbukti menerima gratifikasi dan merugikan kas desa. Bagaimana amar putusan Anda?",
+            options: [
+              { text: "Menjatuhkan pidana penjara 4 tahun, denda, dan kewajiban membayar uang pengganti kerugian desa demi keadilan substantif warga (Sila ke-5).", score: 25, feedback: "Sempurna! Putusan komprehensif mencakup pidana pokok, denda, dan pemulihan hak masyarakat desa.", correct: true },
+              { text: "Membebaskan terdakwa karena uang yang dikorupsi dianggap tidak seberapa.", score: 0, feedback: "Mencederai Rasa Keadilan Masyarakat! Korupsi sekecil apa pun merusak integritas pelayanan publik.", correct: false },
+              { text: "Menjatuhkan hukuman mati tanpa rujukan pasal Tipikor yang berlaku untuk kasus ini.", score: 10, feedback: "Kurang Cermat. Hukuman harus berlandaskan koridor ancaman pidana Pasal 12B/Pasal 3 UU Tipikor.", correct: false }
+            ]
+          }
+        ]
+      },
+      jpu: {
+        label: "Jaksa Penuntut Umum (JPU)",
+        icon: "🧑‍💼",
+        duty: "Membuktikan Dakwaan & Menuntut Keadilan",
+        desc: "Mewakili kepentingan publik, menyusun surat dakwaan, dan menguji silang saksi demi tegaknya transparansi.",
+        steps: [
+          {
+            stage: "Pembacaan Surat Dakwaan",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Yang Mulia Majelis Hakim, kami membacakan dakwaan primair Pasal 12B UU No. 31/1999 atas penerimaan gratifikasi proyek jembatan fiktif.",
+            options: [
+              { text: "Menyampaikan uraian cermat, jelas, dan lengkap mengenai waktu (tempus), tempat (locus), serta kronologi aliran dana transfer.", score: 25, feedback: "Tepat! Syarat materiil surat dakwaan sesuai Pasal 143 KUHAP terpenuhi dengan sempurna.", correct: true },
+              { text: "Membacakan dakwaan umum tanpa menyebutkan nominal kerugian negara secara spesifik.", score: 10, feedback: "Dakwaan berisiko kabur (obscuur libel) dan mudah digugurkan melalui eksepsi penasihat hukum.", correct: false },
+              { text: "Meminta terdakwa langsung dijebloskan ke penjara sebelum persidangan dimulai.", score: 0, feedback: "Menabrak prosedur hukum acara pidana.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi (Cross-Examination)",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Saksi kontraktor penyuap hadir di muka sidang. Pertanyaan apa yang Anda ajukan untuk membongkar persekongkolan?",
+            options: [
+              { text: "\"Apakah penyerahan uang Rp150 juta tersebut secara eksplisit disyaratkan agar proyek fiktif ditandatangani pencairannya?\"", score: 25, feedback: "Pertanyaan Kunci! Membuktikan unsur 'berhubungan dengan jabatan dan bertentangan dengan kewajiban'.", correct: true },
+              { text: "\"Apakah menurut Anda terdakwa orang yang serakah?\"", score: 5, feedback: "Tidak Relevan. Menggali opini subjektif saksi tidak memiliki kekuatan pembuktian materiil.", correct: false },
+              { text: "\"Apakah Anda mau membagi sisa uang proyek kepada jaksa?\"", score: 0, feedback: "Tindak Pidana Suap & Pelanggaran Etika Penuntut Umum!", correct: false }
+            ]
+          },
+          {
+            stage: "Surat Tuntutan (Requisitoir IRAC)",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Saatnya menyampaikan tuntutan akhir berlandaskan pembuktian fakta sidang.",
+            options: [
+              { text: "Menuntut pidana penjara 5 tahun, denda Rp200 juta, dan perampasan aset hasil kejahatan untuk dikembalikan ke kas desa.", score: 25, feedback: "Sangat Berbobot! Memperjuangkan keadilan restoratif bagi keuangan desa dan masyarakat miskin.", correct: true },
+              { text: "Menuntut pidana seringan mungkin karena terdakwa bersikap ramah selama persidangan.", score: 10, feedback: "Kurang Tegas. Penuntut umum harus memprioritaskan kerugian sosial publik di atas sikap formalitas.", correct: false },
+              { text: "Menyerahkan sepenuhnya kepada hakim tanpa merumuskan kesimpulan tuntutan.", score: 5, feedback: "Melalaikan fungsi utama JPU dalam menyusun requisitoir.", correct: false }
+            ]
+          }
+        ]
+      },
+      pengacara: {
+        label: "Penasihat Hukum / Advokat",
+        icon: "👩‍💼",
+        duty: "Membela Hak Konstitusional Terdakwa",
+        desc: "Menguji legalitas alat bukti, menyusun nota pembelaan (Pledoi), dan memastikan asas due process of law.",
+        steps: [
+          {
+            stage: "Pengajuan Eksepsi / Keberatan",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Setelah mendengar dakwaan Jaksa Penuntut Umum, saatnya menyampaikan sikap hukum.",
+            options: [
+              { text: "Mengajukan eksepsi terkait kejelasan rincian proyek dan menuntut pemenuhan asas praduga tak bersalah.", score: 25, feedback: "Strategis! Memastikan hak pembelaan terdakwa terakomodasi sejak awal sidang.", correct: true },
+              { text: "Menghina jaksa di depan ruang sidang dengan kata-kata kasar.", score: 0, feedback: "Contempt of Court! Merusak etika profesi advokat dan wibawa ruang sidang.", correct: false },
+              { text: "Langsung mengakui semua kesalahan klien tanpa memeriksa berkas berkas perkara.", score: 5, feedback: "Melalaikan kewajiban profesional advokat dalam menguji kebenaran materiil perkara.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Bukti Transaksi",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Jaksa mendalilkan uang Rp150 juta adalah suap. Bagaimana pembelaan berbasis bukti konkret?",
+            options: [
+              { text: "Mengajukan bukti surat perjanjian pinjam-meminjam perdata yang sah dan meminta JPU membuktikan niat jahat (mens rea).", score: 25, feedback: "Argumen Hukum Kuat! Menguji beban pembuktian (burden of proof) yang wajib dipenuhi penuntut.", correct: true },
+              { text: "Menyatakan uang tersebut hilang dicuri jin sehingga tidak perlu dipertanggungjawabkan.", score: 0, feedback: "Tidak Rasional & Tidak Berdasar Hukum!", correct: false },
+              { text: "Menyalahkan seluruh perangkat desa lainnya tanpa bukti.", score: 10, feedback: "Strategi berisiko yang tidak memperkuat posisi hukum terdakwa.", correct: false }
+            ]
+          },
+          {
+            stage: "Nota Pembelaan (Pledoi CREAC)",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Saatnya menyampaikan Nota Pembelaan (Pledoi) di hadapan Majelis Hakim.",
+            options: [
+              { text: "Menyusun pledoi terstruktur: meminta pembebasan jika dakwaan tak terbukti, atau permohonan keringanan hukuman mengingat kontribusi terdakwa.", score: 25, feedback: "Sangat Profesional! Pembelaan komprehensif yang elegan dan terstruktur rapi.", correct: true },
+              { text: "Menuntut hakim dipecat jika tidak membebaskan terdakwa.", score: 0, feedback: "Pelanggaran Etika Berat terhadap lembaga peradilan.", correct: false },
+              { text: "Menyerahkan selembar kertas kosong sebagai nota pembelaan.", score: 5, feedback: "Bentuk pengabaian hak klien atas bantuan hukum berkualitas.", correct: false }
+            ]
+          }
+        ]
+      }
+    }
+  },
+
+  kdrt: {
+    id: "kdrt",
+    number: "08/Pid.B/2025/PN.Semu",
+    kicker: "Berkas Perkara No. 02 — Perlindungan HAM Korban",
+    title: "Kekerasan Dalam Rumah Tangga (KDRT)",
+    lawRef: "Pasal 44 & Pasal 5 UU No. 23 Tahun 2004 (Penghapusan KDRT)",
+    pancasilaFocus: "Sila ke-2: Kemanusiaan yang Adil dan Beradab",
+    synopsis: "Seorang suami didakwa melakukan penganiayaan fisik dan psikis berat terhadap istrinya secara berulang hingga korban mengalami trauma mendalam. Kasus ini menguji perlindungan kelompok rentan, sensitivitas gender aparatur hukum, serta asas non-diskriminasi dalam proses peradilan.",
+    evidenceList: [
+      { title: "Visum et Repertum dari RSUD", desc: "Ditemukan luka memar traumatik pada bagian kepala dan lengan akibat benda tumpul." },
+      { title: "Laporan Pemeriksaan Psikologi Klinis", desc: "Korban mengalami Post-Traumatic Stress Disorder (PTSD) dengan tingkat kecemasan akut." },
+      { title: "Rekaman CCTV & Keterangan Tetangga", desc: "Terdengar bentakan keras dan rekaman visual korban melarikan diri mencari pertolongan." }
+    ],
+    roles: {
+      hakim: {
+        label: "Ketua Majelis Hakim",
+        icon: "👨‍⚖️",
+        duty: "Memastikan Sidang Berperspektif Korban & Adil",
+        desc: "Mencegah reviktimisasi, melindungi privasi korban, dan menjatuhkan sanksi edukatif-pembinaan.",
+        steps: [
+          {
+            stage: "Pemeriksaan Saksi Korban",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Saksi korban hadir di persidangan dalam kondisi gemetar dan trauma melihat terdakwa.",
+            options: [
+              { text: "Menawarkan opsi pemeriksaan tanpa kehadiran fisik langsung terdakwa (atau didampingi psikolog) demi kenyamanan psikis korban.", score: 25, feedback: "Sangat Berempati & Sesuai UU KDRT! Mencegah trauma berulang bagi korban kekerasan.", correct: true },
+              { text: "Memaksa korban duduk berdampingan dengan terdakwa dan membentak korban jika menangis.", score: 0, feedback: "Reviktimisasi Parah! Melanggar Pedoman Mengadili Perkara Perempuan Berhadapan dengan Hukum (Perma No. 3/2017).", correct: false },
+              { text: "Menyuruh korban langsung pulang dan mencabut perkara.", score: 5, feedback: "Menolak akses keadilan bagi korban tindak pidana.", correct: false }
+            ]
+          },
+          {
+            stage: "Evaluasi Saksi Ahli Psikologi",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Ahli psikologi memaparkan dampak depresi jangka panjang pada korban akibat pola kekerasan berulang.",
+            options: [
+              { text: "Menggali rekomendasi pemulihan psikologis korban serta konseling wajib rehabilitasi bagi pelaku kekerasan.", score: 25, feedback: "Tepat! Menjunjung nilai kemanusiaan dan keadilan restoratif jangka panjang.", correct: true },
+              { text: "Menyatakan bahwa masalah psikologis hanyalah rekayasa yang dilebih-lebihkan.", score: 5, feedback: "Meremehkan alat bukti keterangan ahli yang sah menurut hukum acara.", correct: false },
+              { text: "Menolak mendengar keterangan ahli karena dianggap membuang waktu.", score: 5, feedback: "Melanggar prinsip peradilan yang mendalam dan berkeadilan.", correct: false }
+            ]
+          },
+          {
+            stage: "Vonis & Penetapan Pemulihan",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Saatnya menjatuhkan vonis pidana terhadap terdakwa kekerasan fisik rumah tangga.",
+            options: [
+              { text: "Menjatuhkan vonis penjara sesuai Pasal 44 UU KDRT ditambah kewajiban mengikuti program konseling konseling pembinaan moral.", score: 25, feedback: "Putusan Progresif! Memberikan efek jera sekaligus jalan pemulihan kepribadian pelaku.", correct: true },
+              { text: "Memvonis bebas dengan alasan 'urusan suami istri bukan urusan negara'.", score: 0, feedback: "Melanggar Konstitusi & UU KDRT! KDRT adalah tindak pidana publik yang wajib dilindungi negara.", correct: false },
+              { text: "Menghukum korban karena dianggap tidak patuh pada suami.", score: 0, feedback: "Diskriminasi Gender & Pelanggaran Hak Asasi Manusia Berat!", correct: false }
+            ]
+          }
+        ]
+      },
+      jpu: {
+        label: "Jaksa Penuntut Umum (JPU)",
+        icon: "🧑‍💼",
+        duty: "Menuntut Penegakan Hukum Berbasis Hak Korban",
+        desc: "Mengawal visum, melindungi hak perempuan, dan menuntut sanksi pidana yang adil dan beradab.",
+        steps: [
+          {
+            stage: "Penyusunan Dakwaan",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Menyusun surat dakwaan perkara KDRT dengan dasar bukti visum et repertum.",
+            options: [
+              { text: "Mendakwakan Pasal 44 ayat (1) UU No. 23/2004 dengan mendeskripsikan secara jelas dampak fisik dan psikis korban.", score: 25, feedback: "Tepat dan Kuat! Dakwaan terarah dan memenuhi kualifikasi yuridis.", correct: true },
+              { text: "Mendakwakan pasal pencurian biasa.", score: 0, feedback: "Error in persona & pasal tidak relevan.", correct: false },
+              { text: "Mengurangi tuntutan tanpa alasan yang sah.", score: 5, feedback: "Mengabaikan kepentingan perlindungan korban.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi Ahli Medis",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Pemeriksaan Dokter Forensik pembuat Visum et Repertum.",
+            options: [
+              { text: "\"Dokter, apakah pola memar dan luka korban konsisten dengan akibat pukulan benda tumpul berulang?\"", score: 25, feedback: "Pertanyaan Tepat! Memperkuat hubungan kausalitas (sebab-akibat) antara perbuatan terdakwa dan luka korban.", correct: true },
+              { text: "\"Dokter, apakah korban sering mengeluh di media sosial?\"", score: 5, feedback: "Tidak relevan dengan keilmuan medis dokter forensik.", correct: false },
+              { text: "\"Berapa biaya pengobatan dokter hari ini?\"", score: 0, feedback: "Tidak relevan dengan pembuktian tindak pidana.", correct: false }
+            ]
+          },
+          {
+            stage: "Tuntutan (Requisitoir)",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Pembacaan tuntutan pidana terhadap terdakwa penganiayaan istri.",
+            options: [
+              { text: "Menuntut pidana penjara 3 tahun, denda, dan ganti rugi restitusi pemulihan trauma medis korban.", score: 25, feedback: "Sangat Berpihak pada Keadilan! Menuntut pidana sekaligus ganti kerugian bagi korban.", correct: true },
+              { text: "Menuntut hukuman percobaan 1 hari saja.", score: 5, feedback: "Tidak memberikan rasa aman bagi korban KDRT.", correct: false },
+              { text: "Menuntut agar korban dipenjara bersama terdakwa.", score: 0, feedback: "Tidak masuk akal dan melanggar hukum.", correct: false }
+            ]
+          }
+        ]
+      },
+      pengacara: {
+        label: "Penasihat Hukum Terdakwa",
+        icon: "👩‍💼",
+        duty: "Membela Secara Etis & Mendorong Restorasi",
+        desc: "Mengedepankan iktikad baik pengakuan, kompensasi pemulihan, dan pembinaan tanpa menyalahkan korban.",
+        steps: [
+          {
+            stage: "Nota Keberatan / Pembelaan Awal",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Menyampaikan strategi pembelaan atas perkara KDRT klien Anda.",
+            options: [
+              { text: "Mengedepankan sikap kooperatif terdakwa yang telah menyesali perbuatan, meminta maaf, dan bersedia membiayai pemulihan total korban.", score: 25, feedback: "Etis & Bermartabat! Pembelaan yang bertanggung jawab tanpa merendahkan martabat korban.", correct: true },
+              { text: "Melakukan victim blaming dengan menuduh korban cerewet sehingga pantas dipukul.", score: 0, feedback: "Tidak Etis & Menjijikkan! Menyalahkan korban kekerasan dilarang dalam etika advokasi modern.", correct: false },
+              { text: "Menolak berbicara selama persidangan berlangsung.", score: 5, feedback: "Bentuk pengabaian peran advokat.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi Karakter",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Menghadirkan saksi keluarga untuk menjelaskan riwayat sosial terdakwa.",
+            options: [
+              { text: "Menanyakan komitmen terdakwa dalam mencari bantuan konseling emosi dan tanggung jawab nafkah anak.", score: 25, feedback: "Konstruktif! Membantu hakim melihat iktikad rehabilitasi dan perbaikan diri klien.", correct: true },
+              { text: "Menyuruh saksi berbohong dan mengarang cerita palsu.", score: 0, feedback: "Tindak Pidana Kesaksian Palsu (Pasal 242 KUHP)!", correct: false },
+              { text: "Menanyakan gosip tetangga yang tidak berkaitan dengan perkara.", score: 5, feedback: "Membuang waktu dan tidak relevan.", correct: false }
+            ]
+          },
+          {
+            stage: "Pledoi (Nota Pembelaan Akhir)",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Menyampaikan permohonan keadilan yang manusiawi kepada Majelis Hakim.",
+            options: [
+              { text: "Memohon keringanan hukuman dengan masa rehabilitasi psikososial demi keberlangsungan masa depan anak dan pemulihan hubungan keluarga.", score: 25, feedback: "Solutif! Mengintegrasikan nilai keadilan restoratif dan kemanusiaan yang beradab.", correct: true },
+              { text: "Menuntut korban meminta maaf kepada terdakwa.", score: 0, feedback: "Menabrak akal sehat dan nilai keadilan.", correct: false },
+              { text: "Menyerahkan perkara tanpa mengajukan pledoi apa pun.", score: 5, feedback: "Merugikan hak pembelaan hukum terdakwa.", correct: false }
+            ]
+          }
+        ]
+      }
+    }
+  },
+
+  ekspresi: {
+    id: "ekspresi",
+    number: "14/Pid.Sus-ITE/2025/PN.Semu",
+    kicker: "Berkas Perkara No. 03 — Demokrasi & Ruang Digital",
+    title: "Kebebasan Berpendapat vs UU ITE",
+    lawRef: "Pasal 28 ayat (2) UU ITE & Pasal 28E ayat (3) UUD NRI 1945",
+    pancasilaFocus: "Sila ke-4: Kerakyatan dalam Permusyawaratan & Kebebasan Demokratis",
+    synopsis: "Seorang mahasiswa aktivis didakwa menyebarkan ujaran kebencian dan pencemaran nama baik setelah mengunggah infografis kritik keras terhadap kebijakan relokasi pasar oleh bupati di media sosial. Kasus ini menguji batas antara kritik kebijakan publik yang sah vs delik penghinaan personal.",
+    evidenceList: [
+      { title: "Tangkapan Layar Postingan Instagram", desc: "Unggahan kritik bertagar #BupatiGagal beserta diagram anggaran APBD pasar." },
+      { title: "Keterangan Ahli Bahasa & Komunikasi Digital", desc: "Analisis makna leksikal kata 'bobrok' dalam konteks tata kelola kebijakan publik." },
+      { title: "Keterangan Ahli Hukum Tata Negara / Konstitusi", desc: "Batasan kebebasan berpendapat sesuai Pasal 28F UUD 1945 dan Putusan MK No. 50/PUU-VI/2008." }
+    ],
+    roles: {
+      hakim: {
+        label: "Ketua Majelis Hakim",
+        icon: "👨‍⚖️",
+        duty: "Menjaga Keseimbangan Demokrasi & Ketertiban",
+        desc: "Membedakan kritik kebijakan publik dengan fitnah pribadi berlandaskan konstitusi UUD 1945.",
+        steps: [
+          {
+            stage: "Pemeriksaan Saksi Ahli Bahasa",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Ahli Bahasa menjelaskan perbedaan konteks kritik kelembagaan terhadap kebijakan versus penghinaan martabat pribadi individu.",
+            options: [
+              { text: "Mendalami apakah postingan tersebut ditujukan kepada instansi/kebijakan publik atau ditujukan menghina fisik/pribadi pejabat secara personal.", score: 25, feedback: "Sangat Cermat! Ini adalah batas pembeda utama antara kritik konstitusional dan delik pidana ITE.", correct: true },
+              { text: "Menyatakan setiap kritik kepada pejabat otomatis adalah tindak kejahatan.", score: 0, feedback: "Otoriter & Melanggar Prinsip Demokrasi Pancasila!", correct: false },
+              { text: "Menghentikan ahli berbicara karena menganggap bahasa Indonesia tidak perlu dianalisis.", score: 5, feedback: "Mengabaikan pentingnya pembuktian unsur pasal oleh ahli.", correct: false }
+            ]
+          },
+          {
+            stage: "Uji Bukti Fakta APBD",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Terdakwa mengajukan dokumen resmi APBD terbuka yang dijadikan rujukan dalam postingan kritiknya.",
+            options: [
+              { text: "Menerima dokumen APBD terbuka sebagai bukti bahwa postingan dilakukan demi kepentingan umum dan memiliki dasar fakta.", score: 25, feedback: "Tepat! Sesuai asas pembelaan untuk kepentingan umum (Pasal 310 ayat 3 KUHP / SKB Pedoman UU ITE).", correct: true },
+              { text: "Merobek dokumen dan menganggap data APBD tidak penting.", score: 0, feedback: "Pelanggaran Etika Berat & Menghancurkan Bukti di Sidang!", correct: false },
+              { text: "Menolak bukti tanpa membacanya.", score: 5, feedback: "Ketidakadilan prosedur.", correct: false }
+            ]
+          },
+          {
+            stage: "Putusan / Vonis Konstitusional",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Saatnya memutus perkara kebebasan berekspresi di era digital ini.",
+            options: [
+              { text: "Memutus bebas terdakwa dari dakwaan ujaran kebencian karena unggahan terbukti kritik kebijakan publik beritikad baik demi transparansi masyarakat.", score: 25, feedback: "Keadilan Demokratis Terwujud! Mengukuhkan perlindungan hak asasi berpendapat warga negara.", correct: true },
+              { text: "Menghukum penjara 10 tahun agar tidak ada lagi masyarakat yang berani mengkritik pemerintah.", score: 0, feedback: "Mencederai Demokrasi & Hak Konstitusional Warga Negara!", correct: false },
+              { text: "Menunda putusan tanpa batas waktu.", score: 5, feedback: "Melanggar asas peradilan cepat, sederhana, dan berbiaya ringan.", correct: false }
+            ]
+          }
+        ]
+      },
+      jpu: {
+        label: "Jaksa Penuntut Umum (JPU)",
+        icon: "🧑‍💼",
+        duty: "Menguji Unsur Ujaran Kebencian & Keresahan",
+        desc: "Membuktikan ada/tidaknya provokasi disinformasi dan pelanggaran norma ketertiban umum.",
+        steps: [
+          {
+            stage: "Pembacaan Surat Dakwaan ITE",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Membacakan dakwaan terkait dugaan pelanggaran norma kepatutan digital dalam penyebaran informasi.",
+            options: [
+              { text: "Mendakwakan unsur transmisi elektronik yang berpotensi memicu kegaduhan publik berdasarkan data komentar medsos.", score: 25, feedback: "Tepat secara prosedur penuntutan formal.", correct: true },
+              { text: "Menuntut akun media sosial terdakwa dihapus selamanya dari internet.", score: 10, feedback: "Bukan kewenangan langsung dalam materi dakwaan pidana formil.", correct: false },
+              { text: "Mendakwa tanpa menunjukkan bukti postingan.", score: 0, feedback: "Dakwaan cacat hukum.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Terdakwa",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Pemeriksaan terhadap motivasi terdakwa saat mengunggah infografis.",
+            options: [
+              { text: "\"Apakah Saudara melakukan verifikasi silang kepada dinas terkait sebelum mempublikasikan data anggaran tersebut ke publik?\"", score: 25, feedback: "Pertanyaan Uji Standar Jurnalistik/Literasi Digital yang Sangat Relevan!", correct: true },
+              { text: "\"Mengapa Saudara tidak diam saja di rumah daripada ikut campur urusan pemerintah?\"", score: 0, feedback: "Anti-Demokrasi! Menghambat partisipasi aktif warga negara.", correct: false },
+              { text: "\"Siapa yang membayar kuota internet Saudara?\"", score: 5, feedback: "Pertanyaan remeh yang tidak memiliki nilai yuridis.", correct: false }
+            ]
+          },
+          {
+            stage: "Tuntutan Akhir Berimbang",
+            speaker: "Jaksa Penuntut Umum",
+            actor: "actor-jpu",
+            speech: "Menyusun tuntutan akhir dengan mempertimbangkan niat baik kontrol sosial versus etika digital.",
+            options: [
+              { text: "Menuntut pidana pembinaan etika digital dengan mempertimbangkan niat kontrol sosial mahasiswa tanpa tuntutan penjara badan.", score: 25, feedback: "Tuntutan Humanis & Edukatif! Sejalan dengan prinsip keadilan restoratif UU ITE terbaru.", correct: true },
+              { text: "Menuntut hukuman seberat mungkin untuk membungkam aspirasi pemuda.", score: 0, feedback: "Bertentangan dengan tujuan pendidikan kewarganegaraan PPKn.", correct: false },
+              { text: "Menyerah tanpa mengajukan pembacaan tuntutan.", score: 5, feedback: "Melanggar tugas pokok penuntutan.", correct: false }
+            ]
+          }
+        ]
+      },
+      pengacara: {
+        label: "Penasihat Hukum Terdakwa",
+        icon: "👩‍💼",
+        duty: "Membela Hak Konstitusional & Demokrasi",
+        desc: "Mengacu pada Pasal 28 UUD NRI 1945, SKB Pedoman UU ITE, dan doktrin kebebasan berekspresi.",
+        steps: [
+          {
+            stage: "Pledoi Konstitusi (CREAC)",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Menyampaikan pembelaan atas hak konstitusional kebebasan menyatakan pendapat.",
+            options: [
+              { text: "Menegaskan bahwa kritik mahasiswa terhadap kebijakan publik adalah bentuk partisipasi warga negara yang dilindungi Pasal 28E ayat (3) UUD 1945.", score: 25, feedback: "Luar Biasa! Argumentasi konstitusional kuat berakar pada supremasi hukum demokrasi.", correct: true },
+              { text: "Menyatakan bahwa di internet siapa saja bebas memfitnah tanpa batasan.", score: 0, feedback: "Keliru Besar! Kebebasan berekspresi tetap dibatasi oleh hak dan martabat orang lain.", correct: false },
+              { text: "Menangis meminta ampun tanpa memaparkan dasar undang-undang.", score: 5, feedback: "Tidak profesional sebagai advokat pembela hukum.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi Ahli Konstitusi",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Pemeriksaan Ahli Hukum Tata Negara untuk memperkuat legitimasi kontrol sosial.",
+            options: [
+              { text: "\"Apakah kontrol sosial terhadap anggaran publik oleh masyarakat merupakan hak yang dijamin dalam prinsip negara demokrasi hukum?\"", score: 25, feedback: "Sangat Tepat! Memperkuat fakta bahwa perbuatan terdakwa dilakukan demi kepentingan umum.", correct: true },
+              { text: "\"Apakah ahli tahu cara membuat akun media sosial viral?\"", score: 0, feedback: "Tidak relevan dengan substansi perkara hukum tata negara.", correct: false },
+              { text: "\"Berapa honor ahli hari ini?\"", score: 5, feedback: "Pertanyaan tidak pantas yang merendahkan saksi ahli.", correct: false }
+            ]
+          },
+          {
+            stage: "Kesimpulan Pledoi Akhir",
+            speaker: "Penasihat Hukum",
+            actor: "actor-pengacara",
+            speech: "Kalimat penutup pembelaan di hadapan Majelis Hakim.",
+            options: [
+              { text: "Memohon putusan bebas murni (vrijspraak) karena tidak ada niat jahat (mens rea) selain keinginan luhur memperbaiki tata kelola daerah.", score: 25, feedback: "Pledoi Gemilang! Merangkum aspek yuridis, filosofis, dan sosiologis dengan sempurna.", correct: true },
+              { text: "Mengancam akan membawa massa merusak gedung pengadilan jika kalah.", score: 0, feedback: "Tindak Pidana Intimidasi Pengadilan (Contempt of Court)!", correct: false },
+              { text: "Menyerahkan tanpa kesimpulan apapun.", score: 5, feedback: "Kurang optimal.", correct: false }
+            ]
+          }
+        ]
+      }
+    }
+  },
+
+  tanah: {
+    id: "tanah",
+    number: "22/Pdt.G/2025/PN.Semu",
+    kicker: "Berkas Perkara No. 04 — Keadilan Agraria & Lingkungan",
+    title: "Sengketa Hak Ulayat: Masyarakat Adat vs Korporasi",
+    lawRef: "UU No. 5 Tahun 1960 (UUPA) & Pasal 18B ayat (2) UUD NRI 1945",
+    pancasilaFocus: "Sila ke-5 & Sila ke-3: Persatuan Indonesia & Keadilan Agraria",
+    synopsis: "Komunitas Masyarakat Adat menggugat perusahaan perkebunan kelapa sawit besar yang mengantongi HGU di atas tanah ulayat leluhur mereka tanpa persetujuan bebas, didahulukan, dan diinformasikan (FPIC). Kasus ini menguji keadilan distributif pemanfaatan sumber daya alam, hukum adat, dan kelestarian ekologis.",
+    evidenceList: [
+      { title: "Peta Wilayah Adat & Pohon Silsilah", desc: "Dokumentasi sejarah penguasaan hutan adat secara turun-temurun lebih dari 150 tahun." },
+      { title: "Sertifikat HGU Perusahaan Sawit", desc: "Izin Hak Guna Usaha terbitan kantor pertanahan tahun 2018 seluas 2.000 hektar." },
+      { title: "Rekomendasi Komnas HAM & KLHK", desc: "Temuan tumpang tindih lahan dan indikasi pencemaran sungai sumber air warga adat." }
+    ],
+    roles: {
+      hakim: {
+        label: "Ketua Majelis Hakim",
+        icon: "👨‍⚖️",
+        duty: "Mewujudkan Keadilan Agraria & Solusi Berkelanjutan",
+        desc: "Mengakomodasi hukum adat yang hidup di masyarakat (*living law*) selaras dengan Pasal 33 UUD 1945.",
+        steps: [
+          {
+            stage: "Pemeriksaan Legal Standing Masyarakat Adat",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Penggugat mengklaim hak atas hutan ulayat berdasarkan hukum adat leluhur.",
+            options: [
+              { text: "Menguji eksistensi kesatuan masyarakat hukum adat dan wilayah ulayatnya sesuai pengakuan Pasal 18B ayat (2) UUD 1945 dan UUPA.", score: 25, feedback: "Sangat Berwawasan! Menghormati kedudukan hukum adat dalam kerangka NKRI.", correct: true },
+              { text: "Menolak gugatan langsung karena masyarakat adat tidak memiliki sertifikat digital modern.", score: 0, feedback: "Positivisme Kaku! Mengabaikan perlindungan konstitusional masyarakat adat.", correct: false },
+              { text: "Menyuruh masyarakat adat mengungsi ke kota.", score: 0, feedback: "Mencederai Hak Asasi & Keadilan Sosial!", correct: false }
+            ]
+          },
+          {
+            stage: "Tahap Mediasi & Musyawarah Mufakat",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Sesuai Perma Mediasi, Majelis Hakim mendorong penyelesaian mufakat sebelum vonis.",
+            options: [
+              { text: "Membuka ruang mediasi win-win solution: pengembalian zona inti hutan adat suci serta skema kebun plasma kemitraan bagi warga.", score: 25, feedback: "Solusi Cemerlang! Mengamalkan Sila ke-4 Pancasila (Musyawarah Mufakat) dan Keadilan Sosial.", correct: true },
+              { text: "Melarang kedua pihak berdialog dan langsung mengambil keputusan sepihak.", score: 10, feedback: "Mengabaikan tahapan mediasi wajib dalam hukum acara perdata.", correct: false },
+              { text: "Menjual tanah sengketa ke pihak asing.", score: 0, feedback: "Ilegal dan bertentangan dengan Pasal 33 UUD 1945.", correct: false }
+            ]
+          },
+          {
+            stage: "Putusan Keadilan Lingkungan",
+            speaker: "Ketua Majelis Hakim",
+            actor: "actor-hakim",
+            speech: "Pembacaan putusan sengketa kepemilikan dan kelestarian hutan adat.",
+            options: [
+              { text: "Mengabulkan sebagian gugatan: menetapkan wilayah konservasi adat dilindungi dari eksploitasi dan mewajibkan ganti rugi pemulihan ekosistem.", score: 25, feedback: "Vonis Visioner! Menjaga kelestarian lingkungan dan hak hidup generasi mendatang.", correct: true },
+              { text: "Memerintahkan penggusuran paksa seluruh desa adat.", score: 0, feedback: "Tragedi Kemanusiaan & Pelanggaran Hak Konstitusional Berat!", correct: false },
+              { text: "Membiarkan sengketa berlarut tanpa ada keputusan jelas.", score: 5, feedback: "Mengabaikan kepastian hukum.", correct: false }
+            ]
+          }
+        ]
+      },
+      jpu: {
+        label: "Kuasa Hukum Penggugat (Warga Adat)",
+        icon: "🧑‍💼",
+        duty: "Memperjuangkan Hak Ulayat & Lingkungan",
+        desc: "Mengajukan bukti riwayat adat, dampak kerusakan lingkungan, dan hak atas tanah leluhur.",
+        steps: [
+          {
+            stage: "Pengajuan Gugatan Perdata",
+            speaker: "Kuasa Hukum Penggugat",
+            actor: "actor-jpu",
+            speech: "Membacakan surat gugatan perbuatan melawan hukum atas penyerobotan tanah ulayat.",
+            options: [
+              { text: "Menyusun posita dan petitum berdasarkan penguasaan fisik turun-temurun dan pelanggaran asas FPIC oleh perusahaan.", score: 25, feedback: "Gugatan Sangat Rapi & Berdasar! Mengintegrasikan hukum adat dan prinsip agraria.", correct: true },
+              { text: "Menggugat tanpa menyertakan peta batas tanah yang jelas.", score: 5, feedback: "Gugatan kabur (obscuur libel) dan rentan ditolak hakim.", correct: false },
+              { text: "Mengajukan gugatan di kantor pos bukan di pengadilan.", score: 0, feedback: "Salah alamat peradilan.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi Tetua Adat",
+            speaker: "Kuasa Hukum Penggugat",
+            actor: "actor-jpu",
+            speech: "Memeriksa Tetua Adat sebagai saksi sejarah batas wilayah hutan.",
+            options: [
+              { text: "\"Tetua, jelaskan batas-batas alamiah seperti sungai dan pohon keramat yang menjadi penanda wilayah adat sejak zaman leluhur.\"", score: 25, feedback: "Pertanyaan Otentik! Membuktikan fakta historis keberadaan hak ulayat di lapangan.", correct: true },
+              { text: "\"Berapa harga tanah adat jika dijual sekarang?\"", score: 5, feedback: "Merusak esensi hak ulayat yang bersifat komunal dan tidak dapat dialihkan sembarangan.", correct: false },
+              { text: "\"Apakah tetua bisa sulap di ruang sidang?\"", score: 0, feedback: "Merusak wibawa peradilan.", correct: false }
+            ]
+          },
+          {
+            stage: "Kesimpulan Akhir Gugatan",
+            speaker: "Kuasa Hukum Penggugat",
+            actor: "actor-jpu",
+            speech: "Penyampaian kesimpulan akhir pembuktian hak adat.",
+            options: [
+              { text: "Memohon majelis hakim menyatakan tanah objek sengketa adalah tanah ulayat sah dan mencabut izin HGU di atas zona hutan adat.", score: 25, feedback: "Permohonan Tegas & Terukur! Memperjuangkan keadilan agraria substantif.", correct: true },
+              { text: "Menyerah dan meminta uang damai tanpa persetujuan warga adat.", score: 0, feedback: "Pengkhianatan Mandat Klien & Pelanggaran Kode Etik Berat!", correct: false },
+              { text: "Membakar dokumen bukti di depan hakim.", score: 0, feedback: "Tindak Pidana Perusakan di Pengadilan!", correct: false }
+            ]
+          }
+        ]
+      },
+      pengacara: {
+        label: "Kuasa Hukum Tergugat (Korporasi)",
+        icon: "👩‍💼",
+        duty: "Membela Izin Usaha & Menawarkan Kemitraan",
+        desc: "Menguji keabsahan administratif HGU serta merumuskan skema tanggung jawab sosial perusahaan (CSR).",
+        steps: [
+          {
+            stage: "Jawaban Gugatan (Eksepsi)",
+            speaker: "Kuasa Hukum Tergugat",
+            actor: "actor-pengacara",
+            speech: "Menyampaikan jawaban resmi atas gugatan masyarakat adat.",
+            options: [
+              { text: "Menunjukkan bukti HGU sah terbitan BPN dan menawarkan musyawarah kemitraan kebun plasma demi kesejahteraan bersama warga.", score: 25, feedback: "Strategi Elegan & Bertanggung Jawab! Menggabungkan kepastian hukum dan kepedulian sosial.", correct: true },
+              { text: "Menyewa preman untuk mengusir warga adat dari ruang sidang.", score: 0, feedback: "Tindak Pidana Kekerasan & Contempt of Court!", correct: false },
+              { text: "Menyangkal keberadaan pabrik yang jelas-jelas berdiri di lapangan.", score: 0, feedback: "Kebohongan fatal yang merusak kredibilitas pembelaan.", correct: false }
+            ]
+          },
+          {
+            stage: "Pemeriksaan Saksi Pejabat BPN",
+            speaker: "Kuasa Hukum Tergugat",
+            actor: "actor-pengacara",
+            speech: "Memeriksa pejabat BPN mengenai prosedur penerbitan sertifikat HGU.",
+            options: [
+              { text: "\"Apakah proses pengukuran dan verifikasi kadastral HGU telah melalui prosedur survei resmi pemerintah?\"", score: 25, feedback: "Pertanyaan Yuridis Kuat! Menguji keabsahan formal produk hukum tata usaha negara.", correct: true },
+              { text: "\"Apakah pejabat BPN suka kelapa sawit?\"", score: 5, feedback: "Pertanyaan tidak relevan dengan pembuktian sertifikat.", correct: false },
+              { text: "\"Apakah kita bisa menyuap hakim sekarang?\"", score: 0, feedback: "Tindak Pidana Korupsi!", correct: false }
+            ]
+          },
+          {
+            stage: "Kesimpulan & Solusi Kemitraan",
+            speaker: "Kuasa Hukum Tergugat",
+            actor: "actor-pengacara",
+            speech: "Menyampaikan kesimpulan akhir persidangan sengketa agraria.",
+            options: [
+              { text: "Menyatakan komitmen perusahaan melepaskan area sungai/hutan sakral serta mengalokasikan 20% kebun plasma untuk masyarakat adat setempat.", score: 25, feedback: "Sangat Bijaksana! Mewujudkan keadilan sosial berbasis gotong royong dan kepatuhan hukum.", correct: true },
+              { text: "Menolak memberikan kompensasi apapun dan mengancam mematikan ekonomi desa.", score: 5, feedback: "Arogan & memicu konflik sosial berkepanjangan.", correct: false },
+              { text: "Meninggalkan ruang sidang sebelum sidang selesai.", score: 0, feedback: "Melecehkan peradilan.", correct: false }
+            ]
+          }
+        ]
+      }
+    }
+  }
+};
+
+/* ============================================================
+   GAME STATE & NAVIGATION ENGINE
+   ============================================================ */
+let gameState = {
+  activeCaseId: 'korupsi',
+  activeRoleKey: 'hakim',
+  stepIndex: 0,
+  score: 75,
+  maxStepScore: 75,
+  isObjectionOpen: false,
+  answersLog: []
+};
+
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Matikan musik otomatis saat masuk ke layar pengerjaan (Sidang & Ujian)
+  if (screenId === 'screen-simulation' || screenId === 'screen-quiz-play') {
+    pauseBGMForWork();
+  } else if (screenId === 'screen-landing' || screenId === 'screen-quiz-menu' || screenId === 'screen-report' || screenId === 'screen-quiz-result') {
+    // Hidupkan kembali musik saat berada di luar sesi pengerjaan jika diizinkan
+    resumeBGMIfAllowed();
+  }
+}
+
+/* 1. Build Case Grid on Landing */
+function renderLandingCases() {
+  const container = document.getElementById('cases-list-container');
+  container.innerHTML = '';
+  
+  Object.keys(DATABASE_CASES).forEach(key => {
+    const c = DATABASE_CASES[key];
+    const card = document.createElement('div');
+    card.className = 'case-card';
+    card.onclick = () => selectCase(key);
+    card.innerHTML = `
+      <div>
+        <div class="case-badge">${c.kicker}</div>
+        <h3>${c.title}</h3>
+        <p>${c.synopsis.substring(0, 115)}...</p>
+      </div>
+      <div>
+        <div class="pancasila-tag">🏛️ ${c.pancasilaFocus.split(':')[0]}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* 2. Select Case & Show Detail */
+function selectCase(caseKey) {
+  playGavelStrike(1);
+  gameState.activeCaseId = caseKey;
+  const c = DATABASE_CASES[caseKey];
+  
+  document.getElementById('detail-kicker').textContent = c.kicker;
+  document.getElementById('detail-title').textContent = c.title;
+  document.getElementById('detail-lawref').textContent = `⚖️ Dasar Hukum: ${c.lawRef}`;
+  document.getElementById('detail-synopsis').textContent = c.synopsis;
+
+  const rolesContainer = document.getElementById('roles-container');
+  rolesContainer.innerHTML = '';
+
+  Object.keys(c.roles).forEach(roleKey => {
+    const r = c.roles[roleKey];
+    const roleCard = document.createElement('div');
+    roleCard.className = 'role-card';
+    roleCard.onclick = () => startSimulation(caseKey, roleKey);
+    roleCard.innerHTML = `
+      <div class="role-avatar">${r.icon}</div>
+      <h4>${r.label}</h4>
+      <div class="role-duty">${r.duty}</div>
+      <p>${r.desc}</p>
+      <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Pilih Peran Ini ➔</button>
+    `;
+    rolesContainer.appendChild(roleCard);
+  });
+
+  showScreen('screen-case-detail');
+}
+
+/* 3. Start Courtroom Simulation */
+function startSimulation(caseKey, roleKey) {
+  if (!studentData.name) {
+    openIdentityModal(() => startSimulation(caseKey, roleKey));
+    return;
+  }
+  
+  playGavelStrike(3); // 3x gavel strike for court session opening!
+  gameState.activeCaseId = caseKey;
+  gameState.activeRoleKey = roleKey;
+  gameState.stepIndex = 0;
+  gameState.score = 75; // Initial civic score
+  gameState.answersLog = [];
+
+  const c = DATABASE_CASES[caseKey];
+  const r = c.roles[roleKey];
+
+  document.getElementById('sim-court-header').textContent = `PERADILAN SEMU &bull; ${c.title.toUpperCase()} (PERAN: ${r.label.toUpperCase()})`;
+  updateCivicMeter();
+  renderSimStep();
+  showScreen('screen-simulation');
+}
+
+function updateCivicMeter() {
+  const fill = document.getElementById('civic-meter-fill');
+  const text = document.getElementById('civic-meter-text');
+  const clamped = Math.max(0, Math.min(100, gameState.score));
+  fill.style.width = `${clamped}%`;
+  text.textContent = `Skor Integritas: ${clamped}/100`;
+
+  if (clamped >= 80) fill.style.background = 'linear-gradient(90deg, #d4af37, #2ecc71)';
+  else if (clamped >= 50) fill.style.background = 'linear-gradient(90deg, #d4af37, #f39c12)';
+  else fill.style.background = 'linear-gradient(90deg, #c0392b, #e74c3c)';
+}
+
+/* Utility: Fisher-Yates Random Shuffle */
+function shuffleOptions(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* 4. Render Current Step Dialogue & Choices (Diacak Otomatis) */
+function renderSimStep() {
+  const c = DATABASE_CASES[gameState.activeCaseId];
+  const r = c.roles[gameState.activeRoleKey];
+  const step = r.steps[gameState.stepIndex];
+  const totalSteps = r.steps.length;
+
+  document.getElementById('sim-step-pill').textContent = `TAHAP ${gameState.stepIndex + 1}/${totalSteps}: ${step.stage.toUpperCase()}`;
+  document.getElementById('sim-speaker-name').textContent = step.speaker;
+  document.getElementById('sim-dialogue-text').textContent = `"${step.speech}"`;
+
+  // Highlight active speaker podium
+  document.querySelectorAll('.actor-podium').forEach(p => p.classList.remove('active-speaker'));
+  const activePodium = document.getElementById(step.actor);
+  if (activePodium) activePodium.classList.add('active-speaker');
+
+  // Clear previous options & feedback
+  const optionsList = document.getElementById('sim-options-list');
+  optionsList.innerHTML = '';
+  const feedbackBox = document.getElementById('sim-feedback-banner');
+  feedbackBox.style.display = 'none';
+  document.getElementById('btn-sim-next').style.display = 'none';
+
+  // Acak urutan opsi jawaban agar tidak selalu A
+  gameState.currentShuffledOptions = shuffleOptions(step.options);
+
+  const letters = ['A', 'B', 'C', 'D'];
+  gameState.currentShuffledOptions.forEach((opt, idx) => {
+    const card = document.createElement('button');
+    card.className = 'choice-card';
+    card.innerHTML = `
+      <span class="choice-letter">${letters[idx]}</span>
+      <span>${opt.text}</span>
+    `;
+    card.onclick = () => selectOption(idx);
+    optionsList.appendChild(card);
+  });
+}
+
+function selectOption(optIndex) {
+  const c = DATABASE_CASES[gameState.activeCaseId];
+  const r = c.roles[gameState.activeRoleKey];
+  const step = r.steps[gameState.stepIndex];
+  const chosen = gameState.currentShuffledOptions[optIndex];
+
+  // Disable all choice buttons & highlight correct/incorrect
+  const buttons = document.querySelectorAll('#sim-options-list .choice-card');
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    const currentOpt = gameState.currentShuffledOptions[i];
+    if (i === optIndex) {
+      if (chosen.correct) {
+        btn.classList.add('correct');
+      } else {
+        btn.classList.add('incorrect');
+      }
+    }
+    if (currentOpt.correct && !chosen.correct) {
+      btn.classList.add('correct');
+    }
+  });
+
+  // Calculate score & audio
+  if (chosen.correct) {
+    playSuccessChime();
+    gameState.score = Math.min(100, gameState.score + 10);
+  } else {
+    playWarningBuzz();
+    gameState.score = Math.max(20, gameState.score - 15);
+  }
+  updateCivicMeter();
+
+  // Save log
+  gameState.answersLog.push({
+    stage: step.stage,
+    chosenText: chosen.text,
+    feedback: chosen.feedback,
+    scoreAwarded: chosen.score,
+    isCorrect: chosen.correct
+  });
+
+  // Show Feedback
+  const fb = document.getElementById('sim-feedback-banner');
+  fb.className = `feedback-banner ${chosen.correct ? 'success' : ''}`;
+  fb.style.display = 'block';
+  fb.innerHTML = `<strong>${chosen.correct ? '✅ EVALUASI PROSEDUR TEPAT' : '⚠️ PERINGATAN HUKUM ACARA / ETIKA'}:</strong><br>${chosen.feedback}`;
+
+  // Enable Next button
+  const btnNext = document.getElementById('btn-sim-next');
+  btnNext.style.display = 'inline-flex';
+  if (gameState.stepIndex === r.steps.length - 1) {
+    btnNext.textContent = 'Lihat Putusan & Rapor Akhir ➔';
+  } else {
+    btnNext.textContent = 'Lanjutkan ke Tahap Berikutnya ➔';
+  }
+}
+
+function advanceSimStep() {
+  playGavelStrike(1);
+  const c = DATABASE_CASES[gameState.activeCaseId];
+  const r = c.roles[gameState.activeRoleKey];
+
+  if (gameState.stepIndex < r.steps.length - 1) {
+    gameState.stepIndex++;
+    renderSimStep();
+  } else {
+    generateBab6Report();
+  }
+}
+
+/* 5. Special Feature: "KEBERATAN! / OBJECTION!" */
+function triggerObjection() {
+  playObjectionSound();
+  const banner = document.getElementById('objection-banner');
+  banner.classList.add('active');
+
+  setTimeout(() => {
+    playGavelStrike(2);
+    banner.classList.remove('active');
+
+    // Dynamic Ruling by Hakim
+    const isSustained = Math.random() > 0.35;
+    const feedbackBox = document.getElementById('sim-feedback-banner');
+    feedbackBox.style.display = 'block';
+    
+    if (isSustained) {
+      playSuccessChime();
+      feedbackBox.className = 'feedback-banner success';
+      feedbackBox.innerHTML = `<strong>👨‍⚖️ MAJELIS HAKIM MENETAPKAN: "KEBERATAN DITERIMA (SUSTAINED)!"</strong><br>Pertanyaan atau manuver pihak lawan dinilai mengarahkan saksi (leading question) atau tidak relevan dengan pokok perkara. Pihak lawan diperintahkan mengubah pertanyaannya. (+5 Poin Integritas)`;
+      gameState.score = Math.min(100, gameState.score + 5);
+    } else {
+      feedbackBox.className = 'feedback-banner';
+      feedbackBox.innerHTML = `<strong>👨‍⚖️ MAJELIS HAKIM MENETAPKAN: "KEBERATAN DITOLAK (OVERRULED)!"</strong><br>Pertanyaan dinilai Majelis Hakim masih relevan untuk menggali fakta materiil. Saksi dipersilakan menjawab. Harap perhatikan ketertiban persidangan.`;
+    }
+    updateCivicMeter();
+  }, 1200);
+}
+
+function confirmExitSim() {
+  if (confirm("Apakah Anda yakin ingin mundur dari persidangan ini?")) {
+    showScreen('screen-landing');
+  }
+}
+
+/* 6. Generate Official Bab 6 Evaluation Report */
+function generateBab6Report() {
+  playGavelStrike(3);
+  const c = DATABASE_CASES[gameState.activeCaseId];
+  const r = c.roles[gameState.activeRoleKey];
+  const finalScore = Math.max(40, Math.min(100, gameState.score));
+
+  document.getElementById('report-case-role-info').textContent = `Kasus: ${c.title} (${c.number}) • Peran: ${r.label}`;
+
+  let stampText = "LULUS (B)";
+  let gradeClass = "ISTIMEWA (A)";
+  let noteText = "";
+
+  if (finalScore >= 85) {
+    stampText = "LULUS DENGAN PREDIKAT: ISTIMEWA (A)";
+    gradeClass = "ISTIMEWA (A)";
+    noteText = "Mahasiswa menunjukkan pemahaman hukum acara yang matang, argumentasi logis berbasis fakta hukum, serta menjunjung tinggi etika persidangan dan nilai-nilai konstitusional Pancasila secara paripurna.";
+  } else if (finalScore >= 70) {
+    stampText = "LULUS DENGAN PREDIKAT: BAIK (B)";
+    gradeClass = "BAIK (B)";
+    noteText = "Mahasiswa menguasai tahapan persidangan dan substansi kasus dengan baik. Terdapat catatan kecil pada ketepatan respons keberatan dan penguatan rujukan pasal hukum.";
+  } else {
+    stampText = "PERLU PERBAIKAN / PEMBINAAN (C)";
+    gradeClass = "CUKUP (C)";
+    noteText = "Mahasiswa masih perlu mendalami kembali hukum acara peradilan dan etika persidangan agar tidak terjebak pada argumen subjektif yang melanggar due process of law.";
+  }
+
+  const stampEl = document.getElementById('report-verdict-stamp');
+  stampEl.textContent = stampText;
+  stampEl.style.color = finalScore >= 70 ? 'var(--emerald-verdict)' : 'var(--crimson)';
+  stampEl.style.borderColor = finalScore >= 70 ? 'var(--emerald-verdict)' : 'var(--crimson)';
+
+  // Render Table Breakdown based on Bab 6 criteria
+  const tbody = document.getElementById('report-table-body');
+  tbody.innerHTML = `
+    <tr>
+      <td><strong>1. Keterampilan Praktis</strong><br><small>Hukum Acara &amp; Kepatuhan Prosedur Sidang</small></td>
+      <td>Kemampuan menjalankan urutan persidangan, menyusun/merespons dokumen dakwaan &amp; pembelaan secara sah.</td>
+      <td><span class="score-badge">${finalScore >= 85 ? '5/5 (Sangat Baik)' : (finalScore >= 70 ? '4/5 (Baik)' : '3/5 (Cukup)')}</span></td>
+    </tr>
+    <tr>
+      <td><strong>2. Profesionalisme &amp; Karakter</strong><br><small>Etika Ruang Sidang &amp; Kesantunan Berbahasa</small></td>
+      <td>Penghormatan terhadap Majelis Hakim, kesantunan interupsi, ketaatan pada Kode Etik Profesi Hukum.</td>
+      <td><span class="score-badge">${finalScore >= 80 ? '5/5 (Sangat Baik)' : '4/5 (Baik)'}</span></td>
+    </tr>
+    <tr>
+      <td><strong>3. Nilai Kewarganegaraan PPKn</strong><br><small>Internalisasi Keadilan &amp; Demokrasi Pancasila</small></td>
+      <td>Penerapan prinsip keadilan sosial, hak asasi manusia, dan perlindungan konstitusi dalam pengambilan keputusan.</td>
+      <td><span class="score-badge">${finalScore >= 85 ? '5/5 (Sangat Baik)' : (finalScore >= 70 ? '4/5 (Baik)' : '3/5 (Cukup)')}</span></td>
+    </tr>
+    <tr style="background:#e0d2b7; font-weight:700;">
+      <td colspan="2" style="text-align:right;">TOTAL SKOR AKHIR KOMPETENSI:</td>
+      <td><span class="score-badge" style="background:var(--wood-deep); color:var(--gold-bright); font-size:13px;">${finalScore} / 100 (${gradeClass})</span></td>
+    </tr>
+  `;
+
+  document.getElementById('report-notes').innerHTML = `
+    <strong>📝 Catatan Instruktur / Dosen Penguji PPKn:</strong><br>
+    ${noteText}<br>
+    <em style="color:#555; display:block; margin-top:3px;">"Peradilan semu adalah laboratorium pembentukan moral penegak keadilan dan warga negara berkarakter Pancasila."</em>
+  `;
+
+  // Set today's date for signature
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const todayStr = new Date().toLocaleDateString('id-ID', dateOptions);
+  const printDateEl = document.getElementById('print-date');
+  if (printDateEl) printDateEl.textContent = todayStr;
+
+  showScreen('screen-report');
+}
+
+/* 7. Dossier Modal Management */
+function openDossierModal() {
+  const c = DATABASE_CASES[gameState.activeCaseId];
+  const container = document.getElementById('dossier-content');
+  container.innerHTML = `
+    <h3 style="font-family:var(--font-serif-sub); color:var(--wood-deep); margin-bottom:6px;">${c.title}</h3>
+    <div style="font-family:var(--font-mono); font-size:12px; color:var(--crimson); margin-bottom:14px;">Nomor Register: ${c.number}</div>
+    <p style="font-size:14px; margin-bottom:18px;"><strong>Fokus Nilai Pancasila:</strong> ${c.pancasilaFocus}</p>
+    <h4 style="font-size:15px; margin-bottom:10px; color:var(--wood-deep);">Daftar Alat Bukti Terlampir:</h4>
+  `;
+
+  c.evidenceList.forEach((ev, idx) => {
+    const item = document.createElement('div');
+    item.className = 'evidence-item';
+    item.innerHTML = `
+      <strong>Bukti [${idx + 1}]: ${ev.title}</strong>
+      <div>${ev.desc}</div>
+    `;
+    container.appendChild(item);
+  });
+
+  document.getElementById('dossier-modal').classList.add('active');
+}
+
+function closeDossierModal() {
+  document.getElementById('dossier-modal').classList.remove('active');
+}
+
+/* ============================================================
+   8. GLOSARIUM / DAFTAR ISTILAH HUKUM & PPKn
+   Buku: Peradilan Semu (Mario Fahmi Syahrial, dkk., 2025)
+   ============================================================ */
+const GLOSSARY_DATA = [
+  { letter: "A", term: "Analisis Fakta Berbasis Nilai", desc: "Kemampuan membedakan fakta relevan dan tidak relevan dalam kasus dengan mempertimbangkan implikasi moral sesuai nilai Pancasila." },
+  { letter: "A", term: "Anggota Hakim I", desc: "Anggota majelis yang mengevaluasi argumen dan bukti, membantu Ketua Majelis, serta menjaga objektivitas penilaian." },
+  { letter: "A", term: "Anggota Hakim II", desc: "Anggota majelis yang membantu memimpin pemeriksaan saksi/terdakwa, menilai kualitas argumentasi, dan ikut menandatangani putusan akhir." },
+  { letter: "A", term: "Asas Praduga Tak Bersalah (Presumption of Innocence)", desc: "Prinsip bahwa seseorang tidak dianggap bersalah hingga ada putusan pengadilan berkekuatan hukum tetap." },
+  { letter: "C", term: "CREAC (Conclusion, Rule, Explanation, Application, Conclusion)", desc: "Kerangka penyusunan argumen hukum yang dimulai dari kesimpulan, aturan, penjelasan, penerapan, lalu kesimpulan ulang." },
+  { letter: "C", term: "Cross-Examination (Pemeriksaan Silang)", desc: "Teknik pemeriksaan saksi oleh pihak lawan untuk menguji konsistensi keterangan." },
+  { letter: "D", term: "Duplik", desc: "Tanggapan pihak pembela/terdakwa atas replik yang diajukan Jaksa Penuntut Umum." },
+  { letter: "E", term: "Ethos, Pathos, Logos", desc: "Tiga elemen persuasi retoris dalam argumentasi: kredibilitas pembicara (ethos), sentuhan emosional (pathos), dan logika argumen (logos)." },
+  { letter: "F", term: "Format Fishbowl", desc: "Format musyawarah putusan oleh juri yang memungkinkan interaksi dan diskusi secara langsung dan transparan." },
+  { letter: "F", term: "Form Kriteria Penilaian Peran", desc: "Lembar penilaian berskala 1–5 untuk tiap peran (hakim, panitera, jaksa, dst.) dalam simulasi peradilan semu." },
+  { letter: "G", term: "Gratifikasi", desc: "Pemberian hadiah/janji kepada pejabat negara terkait jabatannya, diatur dalam Pasal 12B UU No. 31/1999." },
+  { letter: "H", term: "Hakekat Peradilan Semu", desc: "Inti peradilan semu sebagai miniatur peradilan nyata yang mengaplikasikan proses persidangan ke dalam bentuk permainan peran." },
+  { letter: "I", term: "Identifikasi Isu Hukum dan Konstitusional", desc: "Kemampuan merumuskan isu hukum dari fakta kasus dan mengaitkannya dengan UUD 1945/peraturan terkait." },
+  { letter: "I", term: "Inns of Court & Inns of Chancery", desc: "Lembaga pendidikan hukum di Inggris abad ke-14, tempat asal mula praktik \"moots\" yang menjadi cikal bakal peradilan semu." },
+  { letter: "I", term: "IRAC (Issue, Rule, Application, Conclusion)", desc: "Kerangka penyusunan argumen hukum secara sistematis: isu (issue), aturan (rule), penerapan (application), kesimpulan (conclusion)." },
+  { letter: "J", term: "Jaksa Penuntut Umum (JPU)", desc: "Pihak yang mewakili negara untuk menuntut, menyusun dakwaan, dan menghadirkan bukti terhadap terdakwa." },
+  { letter: "K", term: "Keterampilan Praktis", desc: "Kriteria evaluasi yang meliputi penyusunan dokumen hukum, public speaking, dan argumentasi hukum yang logis." },
+  { letter: "K", term: "Ketua Majelis Hakim", desc: "Pemimpin sidang yang mengarahkan jalannya persidangan, memimpin diskusi majelis, dan mengambil keputusan akhir." },
+  { letter: "K", term: "Komunikasi Non-Verbal", desc: "Elemen seperti kontak mata, bahasa tubuh, ekspresi wajah, dan intonasi suara yang memperkuat argumen verbal." },
+  { letter: "M", term: "Majelis Hakim", desc: "Struktur kepemimpinan sidang dalam peradilan semu, terdiri dari Ketua Majelis dan dua Anggota Hakim." },
+  { letter: "M", term: "Mock Trial", desc: "Istilah lain (bahasa Inggris) untuk peradilan semu; simulasi persidangan tanpa kasus nyata." },
+  { letter: "M", term: "Moot Court", desc: "Istilah asal peradilan semu; kegiatan miniatur peradilan berupa persidangan hipotetis dalam bentuk permainan peran." },
+  { letter: "N", term: "National Moot Court Competition", desc: "Kompetisi peradilan semu tingkat nasional pertama di Amerika Serikat (1947) untuk mengembangkan keterampilan advokasi mahasiswa hukum." },
+  { letter: "P", term: "Panitera/Pencatat Sidang", desc: "Petugas yang mencatat jalannya persidangan serta mengelola dokumen dan bukti selama simulasi." },
+  { letter: "P", term: "Pemahaman Kasus", desc: "Cara para pihak memahami dan menafsirkan fakta serta bukti dalam suatu perkara, termasuk aspek moral dan sosial." },
+  { letter: "P", term: "Pemahaman Kasus dan Dasar Hukum", desc: "Kriteria penilaian sejauh mana peserta mengaitkan kasus dengan prinsip dasar negara dan hukum." },
+  { letter: "P", term: "Pembelajaran Aktif dan Partisipatif", desc: "Pendekatan yang melibatkan mahasiswa langsung dalam praktik peran hukum, bukan sekadar teori." },
+  { letter: "P", term: "Pembelajaran Berbasis Pengalaman (Experiential Learning)", desc: "Metode belajar yang memberi kesempatan mahasiswa mengaplikasikan teori ke dalam konteks praktis." },
+  { letter: "P", term: "Penasihat Hukum", desc: "Pihak yang memberi konsultasi hukum, menyusun strategi pembelaan, dan mewakili klien/terdakwa dalam sidang." },
+  { letter: "P", term: "Penerapan Dasar Hukum dan Nilai Pancasila", desc: "Kemampuan mengintegrasikan hukum dan nilai Pancasila dalam menyelesaikan isu hukum." },
+  { letter: "P", term: "Penyusunan Skrip Peradilan Semu", desc: "Proses menyusun naskah simulasi, terdiri dari pendahuluan, proses persidangan, dan kesimpulan." },
+  { letter: "P", term: "Peradilan Semu (Moot Court/Mock Trial)", desc: "Simulasi proses hukum yang memungkinkan mahasiswa memerankan berbagai posisi hukum tanpa melibatkan kasus nyata, untuk melatih keterampilan hukum praktis." },
+  { letter: "P", term: "Preseden", desc: "Putusan pengadilan sebelumnya yang dijadikan acuan/rujukan untuk kasus serupa di masa depan." },
+  { letter: "P", term: "Profesionalisme dan Karakter Kewarganegaraan", desc: "Kriteria evaluasi yang mencakup etika/sikap, penggunaan bahasa hukum yang santun, dan kedisiplinan penampilan." },
+  { letter: "P", term: "Putusan", desc: "Keputusan akhir majelis hakim atas suatu perkara; dalam peradilan semu bersifat simbolis dan tidak mengikat." },
+  { letter: "R", term: "Replik", desc: "Tanggapan Jaksa Penuntut Umum atas argumen pembelaan yang diajukan penasihat hukum/terdakwa." },
+  { letter: "R", term: "Restorative Justice (Keadilan Restoratif)", desc: "Pendekatan penyelesaian sengketa yang berfokus pada pemulihan hubungan, bukan sekadar pemidanaan." },
+  { letter: "R", term: "Role-Playing (Permainan Peran)", desc: "Teknik simulasi di mana peserta memerankan tokoh/posisi tertentu untuk mempraktikkan proses hukum." },
+  { letter: "R", term: "RPS (Rencana Pembelajaran Semester)", desc: "Dokumen perencanaan pengajaran agar peradilan semu terintegrasi dengan kurikulum mata kuliah." },
+  { letter: "S", term: "Saksi/Ahli", desc: "Pihak yang memberikan keterangan berdasarkan fakta yang dialami (saksi) atau keahlian khusus (ahli) terkait perkara." },
+  { letter: "S", term: "Simulasi Peradilan Semu", desc: "Pelaksanaan latihan persidangan sesuai skrip yang telah disusun, diikuti evaluasi dan umpan balik." },
+  { letter: "S", term: "Storytelling (dalam argumentasi hukum)", desc: "Teknik persuasi dengan menyusun fakta kasus menjadi narasi yang koheren dan mudah diingat." },
+  { letter: "S", term: "Struktur Peradilan Semu", desc: "Susunan peran yang meniru sistem peradilan formal, meliputi majelis hakim, panitera, jaksa, penasihat hukum, saksi/ahli, dan terdakwa." },
+  { letter: "T", term: "Terdakwa", desc: "Pihak yang didakwa melakukan pelanggaran hukum dan diadili dalam simulasi persidangan." },
+  { letter: "T", term: "Tim Asesmen Terpadu", desc: "Tim yang menilai kelayakan suatu kasus untuk diselesaikan melalui pendekatan restorative justice." },
+  { letter: "T", term: "Tuntutan", desc: "Pernyataan resmi Jaksa Penuntut Umum berisi dakwaan dan permintaan hukuman terhadap terdakwa." },
+  { letter: "T", term: "Tujuan Peradilan Semu", desc: "Mencakup pengasahan berpikir kritis, komunikasi, kerja sama tim, serta soft skills seperti kepemimpinan dan manajemen waktu." },
+  { letter: "U", term: "UU ITE (Pasal 28 ayat 2)", desc: "Dasar hukum kasus dugaan ujaran kebencian/pencemaran nama baik di media sosial." },
+  { letter: "U", term: "UU No. 23/2004", desc: "Dasar hukum Penghapusan Kekerasan dalam Rumah Tangga (KDRT)." },
+  { letter: "U", term: "UUPA (UU No. 5/1960)", desc: "Undang-Undang Pokok Agraria, dasar hukum sengketa hak atas tanah." }
+];
+
+let currentGlossaryAlpha = "ALL";
+let currentGlossaryQuery = "";
+
+function openGlossaryModal() {
+  currentGlossaryAlpha = "ALL";
+  currentGlossaryQuery = "";
+  const input = document.getElementById('glossary-search-input');
+  if (input) input.value = "";
+  renderGlossaryAlphaBar();
+  renderGlossaryList();
+  document.getElementById('glossary-modal').classList.add('active');
+}
+
+function closeGlossaryModal() {
+  document.getElementById('glossary-modal').classList.remove('active');
+}
+
+function renderGlossaryAlphaBar() {
+  const lettersSet = new Set(GLOSSARY_DATA.map(d => d.letter));
+  const sortedLetters = Array.from(lettersSet).sort();
+  
+  const bar = document.getElementById('glossary-alpha-bar');
+  bar.innerHTML = '';
+
+  // All button
+  const allBtn = document.createElement('button');
+  allBtn.className = `alpha-pill ${currentGlossaryAlpha === 'ALL' ? 'active' : ''}`;
+  allBtn.textContent = 'Semua (A-U)';
+  allBtn.onclick = () => setGlossaryAlphaFilter('ALL');
+  bar.appendChild(allBtn);
+
+  sortedLetters.forEach(l => {
+    const pill = document.createElement('button');
+    pill.className = `alpha-pill ${currentGlossaryAlpha === l ? 'active' : ''}`;
+    pill.textContent = l;
+    pill.onclick = () => setGlossaryAlphaFilter(l);
+    bar.appendChild(pill);
+  });
+}
+
+function setGlossaryAlphaFilter(letter) {
+  currentGlossaryAlpha = letter;
+  renderGlossaryAlphaBar();
+  renderGlossaryList();
+}
+
+function onGlossarySearch(query) {
+  currentGlossaryQuery = query.toLowerCase().trim();
+  renderGlossaryList();
+}
+
+function renderGlossaryList() {
+  const container = document.getElementById('glossary-items-container');
+  container.innerHTML = '';
+
+  const filtered = GLOSSARY_DATA.filter(item => {
+    const matchesLetter = (currentGlossaryAlpha === 'ALL') || (item.letter === currentGlossaryAlpha);
+    const matchesQuery = !currentGlossaryQuery || 
+      item.term.toLowerCase().includes(currentGlossaryQuery) || 
+      item.desc.toLowerCase().includes(currentGlossaryQuery);
+    return matchesLetter && matchesQuery;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:24px; color:var(--ink-muted); font-size:14px;">
+        🔍 Tidak ditemukan istilah yang sesuai dengan kata kunci "<strong>${currentGlossaryQuery}</strong>".
+      </div>
+    `;
+    return;
+  }
+
+  filtered.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'glossary-card';
+    card.innerHTML = `
+      <div class="glossary-term">
+        <span class="glossary-alpha-badge">${item.letter}</span>
+        <span>${item.term}</span>
+      </div>
+      <div style="color:var(--ink-black);">${item.desc}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* ============================================================
+   9. BANK SOAL 50 PILIHAN GANDA & GAME ENGINE UJIAN
+   Buku: Peradilan Semu: Menggali Keterampilan Hukum di Program Studi PPKn (2025)
+   ============================================================ */
+const BANK_SOAL_50 = [
+  // BAB 1: Pendahuluan
+  {
+    id: 1, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Tradisi peradilan semu (mock trial) bermula di Inggris pada abad ke-14, khususnya di lembaga apa?",
+    options: ["Oxford University", "Inns of Court dan Inns of Chancery", "Cambridge College", "Royal Court of Justice"],
+    correctAnswer: "Inns of Court dan Inns of Chancery",
+    explanation: "Tradisi peradilan semu berakar di Inggris pada abad ke-14 di Inns of Court dan Inns of Chancery sebagai tempat pelatihan dialektika calon ahli hukum."
+  },
+  {
+    id: 2, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Harvard Law School mulai mengadopsi metode peradilan semu pada tahun berapa?",
+    options: ["1750", "1820", "1900", "1947"],
+    correctAnswer: "1820",
+    explanation: "Harvard Law School mulai mengadopsi metode peradilan semu ke dalam kurikulum pendidikan hukum pada tahun 1820."
+  },
+  {
+    id: 3, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "National Moot Court Competition pertama kali diselenggarakan di Amerika Serikat pada tahun berapa?",
+    options: ["1820", "1900", "1947", "1960"],
+    correctAnswer: "1947",
+    explanation: "Kompetisi peradilan semu tingkat nasional pertama (National Moot Court Competition) diselenggarakan di AS pada tahun 1947."
+  },
+  {
+    id: 4, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Konsep peradilan semu mulai diperkenalkan di Indonesia pada periode?",
+    options: ["Awal abad ke-19", "Akhir abad ke-19", "Awal abad ke-20", "Akhir abad ke-20"],
+    correctAnswer: "Akhir abad ke-20",
+    explanation: "Di Indonesia, metode peradilan semu mulai diadopsi oleh fakultas hukum dan perguruan tinggi pada akhir abad ke-20."
+  },
+  {
+    id: 5, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Dalam simulasi peradilan semu, proses musyawarah putusan oleh juri sering menggunakan format apa?",
+    options: ["Roundtable", "Fishbowl", "Debat terbuka", "Voting tertutup"],
+    correctAnswer: "Fishbowl",
+    explanation: "Format Fishbowl memungkinkan musyawarah majelis/juri diamati secara transparan untuk pembelajaran aktif mahasiswa."
+  },
+  {
+    id: 6, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Selain keterampilan hukum, peradilan semu dalam konteks PPKn juga membantu mahasiswa mengembangkan hal berikut, KECUALI:",
+    options: ["Komunikasi", "Kepemimpinan", "Kerja dalam tim", "Keterampilan bertani"],
+    correctAnswer: "Keterampilan bertani",
+    explanation: "Peradilan semu dalam PPKn melatih keterampilan berpikir kritis, public speaking, kerja sama tim, dan kepemimpinan."
+  },
+  {
+    id: 7, chapter: 1, chapterName: "Bab 1: Pendahuluan & Sejarah",
+    question: "Peradilan semu berfungsi sebagai sarana yang menghubungkan dunia pendidikan dengan apa?",
+    options: ["Dunia hiburan", "Dunia profesi", "Dunia bisnis", "Dunia politik praktis"],
+    correctAnswer: "Dunia profesi",
+    explanation: "Peradilan semu menjembatani teori akademis di kelas dengan realitas dunia profesi penegakan hukum dan advokasi."
+  },
+
+  // BAB 2: Peradilan Semu (Hakekat & Tujuan)
+  {
+    id: 8, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Peradilan semu (moot court) merupakan aplikasi dari proses persidangan nyata ke dalam bentuk apa?",
+    options: ["Ujian tertulis", "Permainan peran (role-playing)", "Debat kompetitif", "Studi pustaka"],
+    correctAnswer: "Permainan peran (role-playing)",
+    explanation: "Peradilan semu mengaplikasikan proses persidangan nyata ke dalam bentuk metode pembelajaran permainan peran (role-playing)."
+  },
+  {
+    id: 9, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Peradilan semu memungkinkan mahasiswa berperan dalam berbagai posisi hukum tanpa melibatkan apa?",
+    options: ["Dosen pembimbing", "Kasus nyata", "Ruang sidang tiruan", "Argumen hukum"],
+    correctAnswer: "Kasus nyata",
+    explanation: "Simulasi menggunakan kasus hipotetis/fiktif yang terstruktur agar mahasiswa bebas bereksplorasi tanpa resiko hukum kasus nyata."
+  },
+  {
+    id: 10, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Apa tujuan utama peradilan semu dalam pembelajaran PPKn?",
+    options: [
+      "Menggantikan pengadilan sungguhan",
+      "Memberikan pemahaman praktis tentang prosedur hukum dan melatih keterampilan berargumen",
+      "Menilai hafalan pasal",
+      "Sekadar hiburan"
+    ],
+    correctAnswer: "Memberikan pemahaman praktis tentang prosedur hukum dan melatih keterampilan berargumen",
+    explanation: "Tujuan utamanya adalah pemahaman hukum acara secara aplikatif, argumentasi berbasis bukti, dan internalisasi nilai Pancasila."
+  },
+  {
+    id: 11, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Selain berpikir kritis dan komunikasi, apa lagi yang menjadi komponen penting yang diasah melalui peradilan semu?",
+    options: ["Kerja sama tim", "Kemampuan menyanyi", "Kemampuan menggambar", "Kecepatan mengetik"],
+    correctAnswer: "Kerja sama tim",
+    explanation: "Simulasi sidang membutuhkan koordinasi solid antar anggota majelis, tim penuntut, penasihat hukum, dan panitera."
+  },
+  {
+    id: 12, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Peradilan semu memberikan mahasiswa simulasi langsung mengenai tata cara persidangan, alur proses perkara, serta apa?",
+    options: ["Anggaran sidang", "Peran dan tanggung jawab para pelaku hukum", "Jadwal kuliah", "Prosedur administrasi kampus"],
+    correctAnswer: "Peran dan tanggung jawab para pelaku hukum",
+    explanation: "Mahasiswa mempraktikkan langsung kode etik dan tupoksi Ketua Hakim, JPU, Advokat, Panitera, Saksi/Ahli, dan Terdakwa."
+  },
+  {
+    id: 13, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Menurut buku, peradilan semu memberikan manfaat khusus bagi mahasiswa dari latar belakang apa?",
+    options: [
+      "Hanya mahasiswa berprestasi tinggi",
+      "Kurang terwakili, seperti minoritas rasial dan perempuan",
+      "Hanya mahasiswa jurusan hukum",
+      "Hanya mahasiswa internasional"
+    ],
+    correctAnswer: "Kurang terwakili, seperti minoritas rasial dan perempuan",
+    explanation: "Metode ini memberikan ruang inklusif dan kepercayaan diri bagi kelompok yang kurang terwakili untuk tampil beradvokasi."
+  },
+  {
+    id: 14, chapter: 2, chapterName: "Bab 2: Hakekat & Tujuan",
+    question: "Peradilan semu bukan sekadar aktivitas akademik, tetapi merupakan wahana pembentukan apa?",
+    options: ["Reputasi kampus", "Karakter dan profesionalisme", "Nilai ujian akhir", "Jaringan alumni"],
+    correctAnswer: "Karakter dan profesionalisme",
+    explanation: "Peradilan semu menempa integritas moral, kejujuran, keadilan sosial, dan etika profesional warga negara."
+  },
+
+  // BAB 3: Struktur dan Tahapan Peradilan Semu
+  {
+    id: 15, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Siapa yang memimpin jalannya sidang dan mengambil keputusan akhir dalam struktur peradilan semu?",
+    options: ["Panitera", "Ketua Majelis Hakim", "Jaksa Penuntut Umum", "Saksi Ahli"],
+    correctAnswer: "Ketua Majelis Hakim",
+    explanation: "Ketua Majelis Hakim bertindak sebagai pimpinan persidangan yang menjaga tata tertib dan memandu musyawarah putusan."
+  },
+  {
+    id: 16, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Anggota Hakim I dalam peradilan semu berfungsi utama sebagai apa?",
+    options: ["Pencatat sidang", "Evaluator argumen dan bukti", "Penuntut umum", "Pembela terdakwa"],
+    correctAnswer: "Evaluator argumen dan bukti",
+    explanation: "Anggota Hakim I bertugas mendalami fakta, menguji konsistensi alat bukti, dan mengevaluasi dalil para pihak."
+  },
+  {
+    id: 17, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Anggota Hakim II turut serta dalam musyawarah majelis untuk menentukan putusan dan ikut apa?",
+    options: ["Menyusun dakwaan", "Menandatangani putusan akhir", "Menjadi saksi ahli", "Membela terdakwa"],
+    correctAnswer: "Menandatangani putusan akhir",
+    explanation: "Semua anggota majelis hakim ikut menandatangani putusan akhir sebagai bentuk keabsahan vonis peradilan."
+  },
+  {
+    id: 18, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Apa tugas utama Panitera dalam peradilan semu?",
+    options: [
+      "Menuntut terdakwa",
+      "Mencatat jalannya persidangan dan mengelola dokumen/bukti",
+      "Memutuskan hukuman",
+      "Memberikan kesaksian"
+    ],
+    correctAnswer: "Mencatat jalannya persidangan dan mengelola dokumen/bukti",
+    explanation: "Panitera menyusun Berita Acara Sidang (BAS) serta mengadministrasikan bukti surat dan fisik perkara."
+  },
+  {
+    id: 19, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Jaksa Penuntut Umum (JPU) berfungsi sebagai wakil dari siapa?",
+    options: ["Terdakwa", "Negara", "Saksi", "Panitera"],
+    correctAnswer: "Negara",
+    explanation: "JPU bertindak mewakili kepentingan negara dan masyarakat untuk menegakkan keadilan atas pelanggaran pidana."
+  },
+  {
+    id: 20, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Fungsi utama JPU meliputi penuntutan, penyusunan dan pengajuan dakwaan, serta apa?",
+    options: ["Membela terdakwa", "Menghadirkan bukti-bukti di persidangan", "Mencatat berita acara", "Memutuskan hukuman"],
+    correctAnswer: "Menghadirkan bukti-bukti di persidangan",
+    explanation: "JPU memiliki beban pembuktian (burden of proof) untuk menghadirkan saksi, ahli, dan bukti surat di persidangan."
+  },
+  {
+    id: 21, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Apa fungsi utama Penasihat Hukum dalam peradilan semu?",
+    options: [
+      "Menuntut terdakwa",
+      "Memberikan konsultasi hukum dan menyusun strategi pembelaan",
+      "Mencatat sidang",
+      "Memutuskan putusan akhir"
+    ],
+    correctAnswer: "Memberikan konsultasi hukum dan menyusun strategi pembelaan",
+    explanation: "Advokat memastikan hak asasi dan hak prosedural terdakwa terlindungi melalui nota eksepsi dan pledoi."
+  },
+  {
+    id: 22, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Perbedaan antara saksi dan ahli dalam peradilan semu adalah?",
+    options: [
+      "Tidak ada perbedaan",
+      "Saksi memberi keterangan berdasarkan fakta yang dialami, ahli memberi pendapat berdasarkan keahlian spesifik",
+      "Ahli hanya boleh berbicara di akhir sidang",
+      "Saksi selalu berpihak pada terdakwa"
+    ],
+    correctAnswer: "Saksi memberi keterangan berdasarkan fakta yang dialami, ahli memberi pendapat berdasarkan keahlian spesifik",
+    explanation: "Saksi menerangkan apa yang dilihat/didengar/dialami sendiri, sedangkan ahli memberikan analisis keilmuan objektif."
+  },
+  {
+    id: 23, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Mahasiswa yang memerankan terdakwa secara langsung menginternalisasi asas apa?",
+    options: [
+      "Asas legalitas",
+      "Asas praduga tak bersalah (presumption of innocence)",
+      "Asas retroaktif",
+      "Asas kepastian hukum"
+    ],
+    correctAnswer: "Asas praduga tak bersalah (presumption of innocence)",
+    explanation: "Terdakwa berhak diperlakukan tidak bersalah hingga ada putusan hakim berkekuatan hukum tetap."
+  },
+  {
+    id: 24, chapter: 3, chapterName: "Bab 3: Struktur & Tahapan Sidang",
+    question: "Struktur peradilan semu meniru peradilan sesungguhnya dengan tujuan memberikan pengalaman langsung dalam hal apa?",
+    options: [
+      "Menghadapi proses hukum dan mengasah kemampuan berargumen",
+      "Mengelola keuangan pengadilan",
+      "Menjalankan bisnis hukum",
+      "Menulis skripsi hukum"
+    ],
+    correctAnswer: "Menghadapi proses hukum dan mengasah kemampuan berargumen",
+    explanation: "Menstimulasi respon tanggap, tata krama sidang, serta ketajaman dialektika hukum secara langsung."
+  },
+
+  // BAB 4: Persiapan Peradilan Semu
+  {
+    id: 25, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Apa langkah pertama dalam persiapan pelaksanaan peradilan semu?",
+    options: ["Menyusun putusan", "Pemahaman kasus/materi perkara", "Memilih kostum", "Evaluasi akhir"],
+    correctAnswer: "Pemahaman kasus/materi perkara",
+    explanation: "Langkah fundamental adalah membedah berkas perkara (case brief) dan memahami fakta serta norma hukum terkait."
+  },
+  {
+    id: 26, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Pendekatan yang lebih menekankan pada pemulihan hubungan antara pihak yang bersengketa, bukan sekadar pemidanaan, disebut?",
+    options: ["Retributive Justice", "Restorative Justice", "Distributive Justice", "Preventive Justice"],
+    correctAnswer: "Restorative Justice",
+    explanation: "Restorative Justice mengedepankan pemulihan keadilan, dialog para pihak, dan rehabilitasi sosial."
+  },
+  {
+    id: 27, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Restorative Justice dalam buku ini dicontohkan penerapannya pada perkara apa?",
+    options: ["Korupsi", "Narkotika", "Sengketa tanah", "Pencemaran nama baik"],
+    correctAnswer: "Narkotika",
+    explanation: "Pada kasus penyalahgunaan narkotika bagi pecandu/korban, pendekatan asesmen rehabilitasi terpadu diterapkan."
+  },
+  {
+    id: 28, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Struktur skrip peradilan semu biasanya terdiri dari tiga bagian utama, yaitu?",
+    options: [
+      "Pembukaan, isi, penutup",
+      "Pendahuluan, proses persidangan, dan kesimpulan",
+      "Dakwaan, pembelaan, putusan",
+      "Kasus, saksi, hukuman"
+    ],
+    correctAnswer: "Pendahuluan, proses persidangan, dan kesimpulan",
+    explanation: "Skrip memuat: Pendahuluan (kasus & peran), Proses Persidangan (tahapan sidang), dan Kesimpulan (vonis & evaluasi)."
+  },
+  {
+    id: 29, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Dalam bagian pendahuluan skrip peradilan semu, siapa yang memperkenalkan kasus dan menetapkan peran setiap pihak?",
+    options: ["Panitera", "Hakim", "Jaksa", "Saksi"],
+    correctAnswer: "Hakim",
+    explanation: "Ketua Majelis Hakim mengawali persidangan dengan membuka perkara dan memverifikasi identitas serta kedudukan para pihak."
+  },
+  {
+    id: 30, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Beberapa contoh tema kasus yang relevan dengan nilai Pancasila menurut buku ini adalah, KECUALI:",
+    options: ["Pelanggaran HAM", "Tindak pidana korupsi", "Kebebasan beragama", "Sengketa hak cipta internasional"],
+    correctAnswer: "Sengketa hak cipta internasional",
+    explanation: "Fokus kasus PPKn berpusat pada Tipikor (Sila 5), HAM/KDRT (Sila 2), Kebebasan Berpendapat/ITE (Sila 4), dan Tanah Ulayat (Sila 3 & 5)."
+  },
+  {
+    id: 31, chapter: 4, chapterName: "Bab 4: Persiapan Sidang & Skrip",
+    question: "Setelah simulasi peradilan semu selesai, tahap selanjutnya adalah?",
+    options: ["Penutupan tanpa evaluasi", "Evaluasi dan umpan balik", "Pembubaran tim", "Pengumuman pemenang lomba"],
+    correctAnswer: "Evaluasi dan umpan balik",
+    explanation: "Tahap de-briefing dan evaluasi umpan balik (Bab 6) sangat penting untuk mengukur ketercapaian kompetensi mahasiswa."
+  },
+
+  // BAB 5: Teknik Pembelajaran melalui Peradilan Semu
+  {
+    id: 32, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Praktek peradilan semu dalam PPKn membantu mahasiswa mengaplikasikan prinsip hukum serta nilai-nilai dari sumber apa?",
+    options: ["Hukum adat semata", "Pancasila dan UUD 1945", "Hukum internasional saja", "Peraturan kampus"],
+    correctAnswer: "Pancasila dan UUD 1945",
+    explanation: "Pancasila dan UUD NRI 1945 merupakan sumber hukum tertinggi dan orientasi nilai kewarganegaraan PPKn."
+  },
+  {
+    id: 33, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Kerangka kerja IRAC dalam penyusunan argumen hukum terdiri dari empat unsur, yaitu?",
+    options: [
+      "Issue, Rule, Application, Conclusion",
+      "Introduction, Rule, Analysis, Case",
+      "Issue, Reasoning, Argument, Case",
+      "Introduction, Review, Application, Closing"
+    ],
+    correctAnswer: "Issue, Rule, Application, Conclusion",
+    explanation: "IRAC: Issue (Isu hukum), Rule (Aturan/pasal), Application (Penerapan pada fakta), Conclusion (Kesimpulan hukum)."
+  },
+  {
+    id: 34, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Kerangka kerja CREAC dimulai dengan unsur apa?",
+    options: ["Rule", "Conclusion", "Explanation", "Application"],
+    correctAnswer: "Conclusion",
+    explanation: "CREAC diawali dengan Conclusion (Kesimpulan awal tesis), diikuti Rule, Explanation, Application, dan Conclusion ulang."
+  },
+  {
+    id: 35, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Putusan pengadilan sebelumnya yang dijadikan acuan/rujukan untuk kasus serupa disebut?",
+    options: ["Yurisprudensi tetap", "Preseden", "Dakwaan", "Duplik"],
+    correctAnswer: "Preseden",
+    explanation: "Preseden adalah putusan pengadilan terdahulu yang dijadikan pedoman atau rujukan dalam mengadili kasus serupa."
+  },
+  {
+    id: 36, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Teknik persuasi dengan mengubah rangkaian fakta menjadi cerita yang kohesif dan menarik disebut?",
+    options: ["Argumentasi formal", "Storytelling", "Cross-examination", "Deliberasi"],
+    correctAnswer: "Storytelling",
+    explanation: "Storytelling merangkai fakta hukum menjadi narasi yang memikat, runtut, dan mudah dipahami hakim/juri."
+  },
+  {
+    id: 37, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Tiga elemen persuasi retoris yang disebutkan dalam buku (kredibilitas, emosi, logika) dikenal sebagai?",
+    options: ["IRAC", "Ethos, Pathos, Logos", "CREAC", "Fishbowl"],
+    correctAnswer: "Ethos, Pathos, Logos",
+    explanation: "Ethos (kredibilitas/karakter), Pathos (sentuhan emosional/kemanusiaan), dan Logos (daya nalar logika hukum)."
+  },
+  {
+    id: 38, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Salah satu elemen komunikasi non-verbal yang penting menurut buku, yang menunjukkan kepercayaan diri dan ketulusan, adalah?",
+    options: ["Volume suara maksimal", "Kontak mata", "Kecepatan bicara", "Warna pakaian"],
+    correctAnswer: "Kontak mata",
+    explanation: "Kontak mata yang mantap dan wajar mencerminkan kejujuran, keyakinan diri, dan penghormatan pada forum sidang."
+  },
+  {
+    id: 39, chapter: 5, chapterName: "Bab 5: Teknik Argumentasi & Retorika",
+    question: "Dokumen apa yang perlu disusun dosen agar peradilan semu terintegrasi dengan kurikulum mata kuliah?",
+    options: ["RAB", "RPS (Rencana Pembelajaran Semester)", "SPT", "SK Dekan"],
+    correctAnswer: "RPS (Rencana Pembelajaran Semester)",
+    explanation: "RPS memetakan Capaian Pembelajaran Lulusan (CPL) dan rubrik penilaian peradilan semu dalam mata kuliah PPKn."
+  },
+
+  // BAB 6: Evaluasi dan Umpan Balik
+  {
+    id: 40, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Aspek yang mengukur sejauh mana mahasiswa mampu mengaitkan kasus dengan prinsip dasar negara dan hukum disebut?",
+    options: ["Analisis Fakta Berbasis Nilai", "Pemahaman Kasus dan Dasar Hukum", "Profesionalisme", "Keterampilan Praktis"],
+    correctAnswer: "Pemahaman Kasus dan Dasar Hukum",
+    explanation: "Indikator ini menguji penguasaan substansi hukum dan korelasinya dengan konstitusi negara."
+  },
+  {
+    id: 41, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Kemampuan mengidentifikasi fakta kunci dan membedakan fakta relevan dengan mempertimbangkan nilai Pancasila disebut?",
+    options: ["Identifikasi Isu Hukum", "Analisis Fakta Berbasis Nilai", "Penerapan Dasar Hukum", "Penyusunan Dokumen"],
+    correctAnswer: "Analisis Fakta Berbasis Nilai",
+    explanation: "Analisis Fakta Berbasis Nilai menimbang fakta empiris melalui lensa moralitas dan keadilan Pancasila."
+  },
+  {
+    id: 42, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Kualitas dokumen hukum (gugatan, jawaban, memori banding) yang mencerminkan integritas dan objektivitas termasuk dalam kriteria penilaian apa?",
+    options: ["Profesionalisme", "Keterampilan Praktis", "Etika dan Sikap", "Penampilan"],
+    correctAnswer: "Keterampilan Praktis",
+    explanation: "Keterampilan Praktis mengukur ketepatan format dokumen hukum acara, legal drafting, dan artikulasi sidang."
+  },
+  {
+    id: 43, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Kepatuhan terhadap etika profesi hukum, termasuk rasa hormat terhadap pengadilan dan pihak lawan, termasuk kriteria penilaian?",
+    options: ["Keterampilan Praktis", "Profesionalisme dan Karakter Kewarganegaraan", "Analisis Fakta", "Identifikasi Isu Hukum"],
+    correctAnswer: "Profesionalisme dan Karakter Kewarganegaraan",
+    explanation: "Kriteria ini menilai adab ruang sidang, kesantunan sanggahan, dan integritas kepribadian mahasiswa."
+  },
+  {
+    id: 44, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Dalam form kriteria penilaian peran, skor diberikan dalam rentang berapa?",
+    options: ["1–10", "1–5", "0–100", "A–E"],
+    correctAnswer: "1–5",
+    explanation: "Form penilaian Bab 6 menggunakan skala Likert 1 (Sangat Kurang) hingga 5 (Sangat Baik/Istimewa)."
+  },
+  {
+    id: 45, chapter: 6, chapterName: "Bab 6: Evaluasi & Umpan Balik",
+    question: "Menurut form penilaian, kriteria untuk peran Ketua Majelis Hakim mencakup hal berikut, KECUALI:",
+    options: [
+      "Mengatur jalannya persidangan dengan tegas dan adil",
+      "Bersikap netral dan tidak memihak",
+      "Menyusun dakwaan berdasarkan bukti",
+      "Menyampaikan putusan dengan jelas dan objektif"
+    ],
+    correctAnswer: "Menyusun dakwaan berdasarkan bukti",
+    explanation: "Menyusun surat dakwaan adalah tugas Jaksa Penuntut Umum (JPU), bukan tugas Ketua Majelis Hakim."
+  },
+
+  // BAB 7: Studi Kasus dan Skrip Peradilan Semu
+  {
+    id: 46, chapter: 7, chapterName: "Bab 7: Studi Kasus & Skrip",
+    question: "Pasal berapa yang mengatur soal gratifikasi kepada pejabat negara terkait jabatannya?",
+    options: ["Pasal 12B UU No. 31/1999", "Pasal 28 UU ITE", "Pasal 5 UUPA", "Pasal 44 UU No. 23/2004"],
+    correctAnswer: "Pasal 12B UU No. 31/1999",
+    explanation: "Pasal 12B UU No. 31/1999 jo. UU No. 20/2001 mengatur delik penerimaan gratifikasi bagi pegawai negeri/penyelenggara negara."
+  },
+  {
+    id: 47, chapter: 7, chapterName: "Bab 7: Studi Kasus & Skrip",
+    question: "Undang-undang apa yang menjadi dasar hukum perlindungan korban KDRT?",
+    options: ["UU No. 5/1960", "UU No. 23/2004", "UU No. 31/1999", "UU ITE"],
+    correctAnswer: "UU No. 23/2004",
+    explanation: "UU No. 23 Tahun 2004 tentang Penghapusan Kekerasan dalam Rumah Tangga (PKDRT) melindungi hak asasi anggota keluarga."
+  },
+  {
+    id: 48, chapter: 7, chapterName: "Bab 7: Studi Kasus & Skrip",
+    question: "Pasal berapa yang sering dikaitkan dengan kasus penghinaan pejabat negara di media sosial?",
+    options: ["Pasal 12B UU No. 31/1999", "Pasal 28 ayat (2) UU ITE", "Pasal 5 UUPA", "Pasal 23 UU No. 23/2004"],
+    correctAnswer: "Pasal 28 ayat (2) UU ITE",
+    explanation: "Pasal 28 ayat (2) UU ITE mengatur penyebaran informasi kebencian/permusuhan berbasis SARA di ruang digital."
+  },
+  {
+    id: 49, chapter: 7, chapterName: "Bab 7: Studi Kasus & Skrip",
+    question: "UU Pokok Agraria (UUPA) yang menjadi dasar hukum sengketa hak atas tanah adalah UU nomor berapa?",
+    options: ["UU No. 5/1960", "UU No. 31/1999", "UU No. 23/2004", "UU No. 11/2008"],
+    correctAnswer: "UU No. 5/1960",
+    explanation: "Undang-Undang No. 5 Tahun 1960 (UUPA) merupakan dasar hukum pokok pertanahan dan hak ulayat di Indonesia."
+  },
+  {
+    id: 50, chapter: 7, chapterName: "Bab 7: Studi Kasus & Skrip",
+    question: "Tahap 'Replik dan Duplik' dalam sidang berfungsi untuk apa?",
+    options: [
+      "Pembacaan identitas terdakwa",
+      "Jaksa dan pengacara saling menanggapi argumen lawan sebelum putusan",
+      "Sumpah saksi",
+      "Penutupan sidang tanpa diskusi"
+    ],
+    correctAnswer: "Jaksa dan pengacara saling menanggapi argumen lawan sebelum putusan",
+    explanation: "Replik (tanggapan JPU atas pledoi) dan Duplik (tanggapan Penasihat Hukum atas replik) adalah dialektika penegasan dalil akhir."
+  }
+];
+
+/* ============================================================
+   QUIZ ENGINE CONTROLLER
+   ============================================================ */
+let quizState = {
+  mode: 'full', // 'full', 'quick10', 'chapter'
+  selectedChapter: 1,
+  questions: [],
+  currentIndex: 0,
+  score: 0,
+  userAnswers: [],
+  currentShuffledOptions: []
+};
+
+function startQuiz(mode = 'full', chapter = 1) {
+  if (!studentData.name) {
+    openIdentityModal(() => startQuiz(mode, chapter));
+    return;
+  }
+  
+  playGavelStrike(2);
+  quizState.mode = mode;
+  quizState.selectedChapter = chapter;
+  quizState.currentIndex = 0;
+  quizState.score = 0;
+  quizState.userAnswers = [];
+
+  let pool = [];
+  if (mode === 'chapter') {
+    pool = BANK_SOAL_50.filter(q => q.chapter === chapter);
+  } else {
+    pool = [...BANK_SOAL_50];
+  }
+
+  // Acak urutan soal (Fisher-Yates)
+  let shuffledQuestions = shuffleOptions(pool);
+
+  if (mode === 'quick10') {
+    shuffledQuestions = shuffledQuestions.slice(0, 10);
+  }
+
+  quizState.questions = shuffledQuestions;
+  renderQuizQuestion();
+  showScreen('screen-quiz-play');
+}
+
+function renderQuizQuestion() {
+  const total = quizState.questions.length;
+  const current = quizState.questions[quizState.currentIndex];
+
+  document.getElementById('quiz-progress-text').textContent = `Soal ${quizState.currentIndex + 1} dari ${total}`;
+  const pct = ((quizState.currentIndex) / total) * 100;
+  document.getElementById('quiz-progress-fill').style.width = `${pct}%`;
+  
+  const currentPoin = quizState.score * 2;
+  const maxPossibleCurrent = quizState.currentIndex * 2;
+  document.getElementById('quiz-live-score').textContent = `Skor: ${currentPoin} Poin (${quizState.score}/${quizState.currentIndex} Benar)`;
+
+  document.getElementById('quiz-current-chapter-tag').textContent = current.chapterName.toUpperCase();
+  document.getElementById('quiz-question-text').textContent = `${quizState.currentIndex + 1}. ${current.question}`;
+
+  const fbBox = document.getElementById('quiz-feedback-box');
+  fbBox.style.display = 'none';
+  document.getElementById('btn-quiz-next').style.display = 'none';
+
+  // Acak urutan 4 opsi jawaban (A, B, C, D)
+  quizState.currentShuffledOptions = shuffleOptions(current.options);
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const container = document.getElementById('quiz-options-container');
+  container.innerHTML = '';
+
+  quizState.currentShuffledOptions.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt-btn';
+    btn.innerHTML = `
+      <span class="opt-badge">${letters[idx]}</span>
+      <span>${opt}</span>
+    `;
+    btn.onclick = () => selectQuizOption(idx);
+    container.appendChild(btn);
+  });
+}
+
+function selectQuizOption(optIndex) {
+  const current = quizState.questions[quizState.currentIndex];
+  const chosenText = quizState.currentShuffledOptions[optIndex];
+  const isCorrect = (chosenText === current.correctAnswer);
+
+  const buttons = document.querySelectorAll('#quiz-options-container .quiz-opt-btn');
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    const text = quizState.currentShuffledOptions[idx];
+    if (text === current.correctAnswer) {
+      btn.classList.add('correct');
+    }
+    if (idx === optIndex && !isCorrect) {
+      btn.classList.add('incorrect');
+    }
+  });
+
+  if (isCorrect) {
+    playSuccessChime();
+    quizState.score++;
+  } else {
+    playWarningBuzz();
+  }
+
+  // Record user answer
+  quizState.userAnswers.push({
+    questionId: current.id,
+    chapter: current.chapter,
+    chapterName: current.chapterName,
+    questionText: current.question,
+    chosen: chosenText,
+    correct: current.correctAnswer,
+    isCorrect: isCorrect,
+    explanation: current.explanation
+  });
+
+  // Show Feedback Box with 2 Poin indicator
+  const fbBox = document.getElementById('quiz-feedback-box');
+  fbBox.className = `feedback-banner ${isCorrect ? 'success' : ''}`;
+  fbBox.style.display = 'block';
+  fbBox.innerHTML = `
+    <strong>${isCorrect ? '✅ JAWABAN ANDA BENAR! (+2 POIN)' : '⚠️ JAWABAN BELUM TEPAT (0 POIN)'}:</strong><br>
+    ${!isCorrect ? `<strong>Kunci Jawaban:</strong> ${current.correctAnswer}<br>` : ''}
+    <em>📖 Penjelasan:</em> ${current.explanation}
+  `;
+
+  // Update live score display
+  const currentPoin = quizState.score * 2;
+  const answeredCount = quizState.currentIndex + 1;
+  document.getElementById('quiz-live-score').textContent = `Skor: ${currentPoin} Poin (${quizState.score}/${answeredCount} Benar)`;
+
+  const btnNext = document.getElementById('btn-quiz-next');
+  btnNext.style.display = 'inline-flex';
+  if (quizState.currentIndex === quizState.questions.length - 1) {
+    btnNext.textContent = '🏆 Lihat Hasil Evaluasi Ujian ➔';
+  } else {
+    btnNext.textContent = 'Soal Berikutnya ➔';
+  }
+}
+
+function nextQuizQuestion() {
+  playGavelStrike(1);
+  if (quizState.currentIndex < quizState.questions.length - 1) {
+    quizState.currentIndex++;
+    renderQuizQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function confirmExitQuiz() {
+  if (confirm("Apakah Anda yakin ingin menghentikan ujian ini? Skor Anda saat ini akan dihitung.")) {
+    if (quizState.userAnswers.length > 0) {
+      finishQuiz();
+    } else {
+      showScreen('screen-quiz-menu');
+    }
+  }
+}
+
+function finishQuiz() {
+  playGavelStrike(3);
+  const totalQuestions = quizState.questions.length;
+  const correctCount = quizState.score;
+  const wrongCount = totalQuestions - correctCount;
+  
+  // Aturan skor: 1 soal benar = 2 poin
+  const totalEarnedPoints = correctCount * 2;
+  const maxPossiblePoints = totalQuestions * 2;
+  const finalPercentage = Math.round((correctCount / totalQuestions) * 100);
+
+  // Set Score Badge (Skor 0-100 untuk 50 soal)
+  document.getElementById('res-score-num').textContent = (totalQuestions === 50) ? totalEarnedPoints : finalPercentage;
+  
+  let modeTitle = "HASIL EVALUASI UJIAN LENGKAP (50 SOAL)";
+  if (quizState.mode === 'quick10') modeTitle = "HASIL KUIS KILAT (10 SOAL ACAK)";
+  else if (quizState.mode === 'chapter') modeTitle = `HASIL EVALUASI BAB ${quizState.selectedChapter}`;
+  document.getElementById('res-mode-title').textContent = modeTitle;
+
+  document.getElementById('res-summary-stats').textContent = `Total Soal: ${totalQuestions} • Benar: ${correctCount} (x2 Poin = ${totalEarnedPoints} Poin) • Salah: ${wrongCount} • Skor Akhir: ${totalEarnedPoints}/${maxPossiblePoints} (${finalPercentage}%)`;
+
+  let gradeText = "PREDIKAT: ISTIMEWA (A)";
+  let gradeColor = "var(--emerald-verdict)";
+  let noteText = "";
+
+  if (finalPercentage >= 85) {
+    gradeText = "LULUS DENGAN PREDIKAT: ISTIMEWA (A)";
+    gradeColor = "var(--emerald-verdict)";
+    noteText = "Selamat! Anda memiliki penguasaan teori hukum acara, etika persidangan, dan integrasi nilai Pancasila yang luar biasa matang dan komprehensif.";
+  } else if (finalPercentage >= 70) {
+    gradeText = "LULUS DENGAN PREDIKAT: BAIK (B)";
+    gradeColor = "var(--emerald-verdict)";
+    noteText = "Hasil sangat baik! Anda telah memahami konsep pokok peradilan semu dengan solid. Disarankan memperdalam rujukan pasal hukum spesifik.";
+  } else if (finalPercentage >= 55) {
+    gradeText = "LULUS DENGAN PREDIKAT: CUKUP (C)";
+    gradeColor = "var(--gold-dim)";
+    noteText = "Cukup baik. Masih terdapat beberapa materi tahapan sidang dan metode argumentasi (IRAC/CREAC) yang perlu dipelajari kembali melalui Glosarium.";
+  } else {
+    gradeText = "PERLU PERBAIKAN & BELAJAR ULANG (D)";
+    gradeColor = "var(--crimson)";
+    noteText = "Anda disarankan membaca ulang Bab materi dan kamus istilah glosarium sebelum mengulangi ujian untuk memperkuat dasar konsep hukum.";
+  }
+
+  const stampEl = document.getElementById('res-grade-stamp');
+  stampEl.textContent = gradeText;
+  stampEl.style.color = gradeColor;
+  stampEl.style.borderColor = gradeColor;
+
+  document.getElementById('res-feedback-notes').innerHTML = `
+    <strong>📝 Catatan Evaluator Akademik PPKn UNIROW:</strong><br>
+    ${noteText}<br>
+    <em style="color:#555; display:block; margin-top:4px;">"Kecakapan hukum praktis dibangun melalui ketekunan mengkaji norma, logika penalaran, dan keberanian menegakkan keadilan."</em>
+  `;
+
+  // Chapter Mastery Breakdown Table
+  const chapterBreakdown = {};
+  quizState.userAnswers.forEach(ans => {
+    if (!chapterBreakdown[ans.chapter]) {
+      chapterBreakdown[ans.chapter] = { name: ans.chapterName, total: 0, correct: 0 };
+    }
+    chapterBreakdown[ans.chapter].total++;
+    if (ans.isCorrect) chapterBreakdown[ans.chapter].correct++;
+  });
+
+  const tbody = document.getElementById('res-breakdown-body');
+  tbody.innerHTML = '';
+
+  Object.keys(chapterBreakdown).forEach(chKey => {
+    const ch = chapterBreakdown[chKey];
+    const chPoints = ch.correct * 2;
+    const chMaxPoints = ch.total * 2;
+    const chPct = Math.round((ch.correct / ch.total) * 100);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${ch.name.split(':')[0]}</strong></td>
+      <td>${ch.name.split(':')[1] || ch.name} (${ch.correct}/${ch.total} Soal &bull; ${chPoints}/${chMaxPoints} Poin)</td>
+      <td><span class="score-badge" style="background:${chPct >= 80 ? '#1e5e3a' : (chPct >= 60 ? '#b8860b' : 'var(--crimson)')};">${chPct}% (${chPoints} Poin)</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Date on signature
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const todayStr = new Date().toLocaleDateString('id-ID', dateOptions);
+  const pDate = document.getElementById('quiz-print-date');
+  if (pDate) pDate.textContent = todayStr;
+
+  showScreen('screen-quiz-result');
+}
+
+/* Initialize App */
+document.addEventListener('DOMContentLoaded', () => {
+  renderLandingCases();
+  updateAllSignatures();
+});
+</script>
+</body>
+</html>
+
